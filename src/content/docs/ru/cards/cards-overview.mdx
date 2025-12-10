@@ -1,6 +1,6 @@
 ---
-title: Introduction to Cards
-description: Learn how to leverage Cards for advanced knowledge management.
+title: Введение в Карточки
+description: Узнайте, как использовать Карточки для расширенного управления знаниями.
 ---
 import LocalVideo from "../../../../components/LocalVideo.astro";
 import { Image } from "astro:assets";
@@ -8,42 +8,42 @@ import cards from "../../../../assets/screenshots/huly/cards/cards.png";
 
 <LocalVideo id="XVdIMinYV0k" posterQuality="max" />
 
-## Understanding Cards
+## Что такое Карточки
 
-Cards are a flexible framework for structuring information efficiently. 
+Карточки — это гибкая структура для эффективного упорядочивания информации.
 
-While our initial implementation of Cards is focused on knowledge management, Cards will also serve as the foundation for many other features on the platform, including process management and threads. With Cards, you'll be able to build your own custom applications within Foundation, such as a CRM, CMS, project management system and more.
+Хотя первоначальная реализация Карточек в первую очередь ориентирована на управление знаниями, Карточки также станут основой для множества других функций платформы, включая управление процессами и обсуждения (threads). С помощью Карточек вы сможете создавать собственные приложения в Foundation — например, CRM, CMS, систему управления проектами и многое другое.
 
-This guide explains the core components of the Cards system: **Types**, **Tags**, **Relations** and **Cards**, providing an overview of the entire system. We also have more in-depth guides on each element so you can learn how to use them in your own workspace, which are linked in the sections below.
+В этом руководстве рассказывается о ключевых компонентах системы Карточек: **Типы**, **Теги**, **Связи** и **Карточки**. Кроме того, существуют более детальные руководства для каждого элемента — ссылки на них приведены в соответствующих разделах ниже.
 
 
-## Core elements of the Cards system
+## Основные элементы системы Карточек
 
-The following elements make up the Cards system. Click on any guide to learn more:
+Ниже перечислены элементы, составляющие систему Карточек. Нажмите на любое руководство, чтобы узнать больше:
 
-* [**Types**](/ru/cards/types/types-overview) define the structure of information within the system. You can think of a Type like a blueprint with specific instructions for what details you'll need to store for each piece of information. 
-* [**Tags**](/ru/cards/tags/tags-overview) are used to add additional properties or behaviors to a Type. Tags allow you to define a specific set of properties that can be applied to multiple Types.
-* [**Cards**](/ru/cards/creating-cards) are "instances" of a Type — the real information that you're storing in your knowledge management system. Each Card is a unique piece of information that follows the structure defined by its Type.
-* [**Relations**](/ru/cards/relations/relations-overview) define the connections between different Types and Tags, allowing you to link related information together with Cards.
+* [**Типы (Types)**](/ru/cards/types/types-overview) задают структуру информации в системе. Тип можно представить как «план» (blueprint), который определяет, какие данные необходимо хранить для каждого элемента.
+* [**Теги (Tags)**](/ru/cards/tags/tags-overview) используются для добавления свойств или поведения к Типу. Теги позволяют определять набор свойств, применяемых к нескольким Типам.
+* [**Карточки (Cards)**](/ru/cards/creating-cards) — это «экземпляры» Типа, фактические единицы информации, хранимые в системе управления знаниями. Каждая Карточка — это отдельный объект, соответствующий структуре своего Типа.
+* [**Связи (Relations)**](/ru/cards/relations/relations-overview) определяют связи между Типами и Тегами, позволяя комбинировать и связывать связанные данные между Карточками.
 
-## Using Cards for knowledge management
+## Использование Карточек для управления знаниями
 
-Cards provide a structured and scalable way to organize knowledge. Unlike traditional document-based systems, where information can become scattered and difficult to navigate, Cards allow for dynamic connections, filtering, and categorization.
+Карточки обеспечивают структурированный и масштабируемый способ организации знаний. В отличие от классических документных систем, где информация может разбросаться и стать трудной для навигации, Карточки позволяют создавать динамические связи, фильтры и категории.
 
-This approach offers several advantages:
+Такой подход даёт несколько преимуществ:
 
-* **Structured organization** - Each Card follows a defined Type, ensuring consistency.
-* **Easy navigation** - Relations between Cards create a web of interconnected knowledge, making it easy to find associated information.
-* **Scalability** - The modular nature of Cards allows you to expand your system at scale.
-* **Collaborative editing** - The rich text editor and activity tracking allow teams to work together collaboratively.
+* **Структурированная организация** — каждая Карточка соответствует определённому Типу, что гарантирует единообразие.
+* **Удобная навигация** — связи между Карточками формируют сеть взаимосвязанных данных, упрощающую поиск связанной информации.
+* **Масштабируемость** — модульная природа Карточек позволяет расширять систему по мере роста объёма данных.
+* **Совместная работа** — удобный редактор и отслеживание активности позволяют командам работать вместе над контентом.
 
-Continue through the guides to learn how to put these concepts into practice, creating your own knowledge management system with Cards.
+Изучайте последующие руководства, чтобы применить эти концепции на практике и построить собственную систему управления знаниями на основе Карточек.
 
 <div style={{ height: "7px" }}></div>
 
 <div className="rounded-box">
-  <h5><strong>Let's build a game design system with Cards! 🎮</strong></h5>
-  <p>In the following guides, we'll look at how to design an adventure game system using Cards. Game designers need to store information about **game components**, **documents** and **files**, keeping track of how everything is connected. We'll use this example to illustrate how Cards can be used to create a comprehensive knowledge management system.</p>
+  <h5><strong>Создадим систему дизайна игры с помощью Карточек! 🎮</strong></h5>
+  <p>В следующих руководствах мы рассмотрим, как спроектировать систему для приключенческой игры с использованием Карточек. Дизайнерам игр необходимо хранить информацию о **компонентах игры**, **документах** и **файлах**, отслеживая взаимосвязи между ними. В этом примере мы покажем, как Карточки помогают создать комплексную систему управления знаниями.</p>
 </div>
 
-<Image src={cards} alt="Cards sneak peek" inferSize quality="max" />
+<Image src={cards} alt="Краткий обзор Карточек" inferSize quality="max" />

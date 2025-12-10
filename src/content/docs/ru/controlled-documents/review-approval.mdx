@@ -1,19 +1,19 @@
 ---
-title: Review and approval
-description: Learn the process for reviewing and approving documents.
+title: Проверка и утверждение
+description: Узнайте о процессе проверки и утверждения документов.
 ---
 
 import { Image } from 'astro:assets';
 import sendForReview from '../../../../assets/screenshots/eqms/send-for-review.png';
 import reviewConfirmation from '../../../../assets/screenshots/eqms/review-confirmation.png';
 
-TraceX includes electronic signatures (21 CFR part 11, FDA), which are used for reviewing and approving Controlled Documents.
+В TraceX реализованы электронные подписи (соответствующие требованиям 21 CFR Part 11 и FDA), используемые для проведения проверки и утверждения контролируемых документов.
 
-**Note:** As of January 2025, authors are now required to sign documents before sending them for review or approval, with corresponding timestamps included in the document. documents that have already been reviewed cannot skip the review step when sent for approval, maintaining the proper order of signatures (Author → Reviewer → Approver). This ensures consistency and helps avoid issues during audits. The exported PDF will reflect the correct signature order based on the review sequence, ensuring proper documentation for regulatory purposes.
+**Примечание:** С января 2025 года авторы обязаны подписывать документы перед отправкой их на проверку или утверждение; в документе будут включены соответствующие отметки времени. Документы, которые уже прошли проверку, не могут пропустить этап проверки при отправке на утверждение — сохраняется корректный порядок подписей (Author → Reviewer → Approver). Это обеспечивает согласованность и помогает избежать проблем во время аудитов. Экспортируемый PDF будет отражать правильный порядок подписей в соответствии с последовательностью проверки, что важно для регуляторной отчётности.
 
-## Reviewing a document
+## Проверка документа
 
-To send a document for review, click `Send for review` and select the members that will be reviewing the document. This menu will automatically populate with the reviewers selected when creating or editing the document, but you can add additional reviewers here as well. Confirm submission for review by entering your own electronic signature. Then, click `Send`.
+Чтобы отправить документ на проверку, нажмите `Send for review` и выберите участников, которые будут рецензировать документ. Это меню автоматически заполняется рецензентами, указанными при создании или редактировании документа; при необходимости вы также можете добавить дополнительных рецензентов. Подтвердите отправку на проверку, введя свою электронную подпись, а затем нажмите `Send`.
 
 <Image 
 src={sendForReview} 
@@ -29,17 +29,17 @@ inferSize
 quality='max'
 />
 
-Document reviewers will be able to add their electronic signature when submitting their review.
+Рецензенты документа смогут добавить свою электронную подпись при отправке отзыва/рецензии.
 
-After the document has been reviewed, any further edits will be recorded for comparison. Selecting the `Comparing` option will allow you to view the edits to the document, using red and green highlights to show deletions and additions.
+После того как документ будет проверен, любые последующие изменения будут фиксироваться для сравнения. Выбор опции `Comparing` позволит просмотреть внесённые правки: удаления будут выделены красным, а добавления — зелёным.
 
-## Approving a document
+## Утверждение документа
 
-To send a document for approval, click `Send for approval` and select the members that will approve the document. Any documents that have had changes after previously being reviewed must still be reviewed again before approval.
+Чтобы отправить документ на утверждение, нажмите `Send for approval` и выберите членов, которые будут утверждать документ. Документы, в которых были внесены изменения после предыдущей проверки, всё равно должны проходить повторную проверку перед утверждением.
 
-> **Note:** All comments need to be resolved before sending a document for approval. If unresolved comments remain, the `Send for approval` button will be disabled.
+> **Примечание:** Все комментарии должны быть разрешены перед отправкой документа на утверждение. Если остаются неразрешённые комментарии, кнопка `Send for approval` будет неактивна.
 
-Once sent, the approvers can approve or reject the document and add their electronic signature.
+После отправки утверждающие могут утвердить или отклонить документ и поставить свою электронную подпись.
 
 <div style="position: relative; padding-top: 52.02231520223152%;">
   <iframe
@@ -51,6 +51,6 @@ Once sent, the approvers can approve or reject the document and add their electr
   ></iframe>
 </div>
 
-## Editing reviewers and approvers
+## Редактирование списков рецензентов и утверждающих
 
-As an author of a Controlled Document, you can now edit the reviewers and approvers list while the documents are still in 'In review' or 'In approval' status. This means you no longer need to start from scratch if you need to make changes before finalizing the document.
+Как автор контролируемого документа, вы можете редактировать списки рецензентов и утверждающих, пока документ имеет статус `In review` или `In approval`. Это означает, что вам не нужно начинать всё заново, если требуется внести изменения до окончательного утверждения документа.
