@@ -12,7 +12,7 @@ export default defineConfig({
     [
       starlight({
         customCss: ['./src/styles.css'],
-        title: 'Foundation Docs',
+        title: 'Интабия. Платформа',
         favicon: '/favicon.ico',
         components: {
           SocialIcons: './src/components/CustomSocialIcons.astro',
@@ -34,7 +34,7 @@ export default defineConfig({
             translations: { en: 'Getting started' },
             items: [
               {
-                label: 'Что такое Foundation?',
+                label: 'Что такое Интабия. Платформа?',
                 translations: { en: 'What is Foundation?' },
                 link: '/getting-started/introduction-platform/',
               },
@@ -58,21 +58,21 @@ export default defineConfig({
                 translations: { en: 'API & other tools' },
                 link: '/getting-started/api-tools/',
               },
-              {
-                label: 'Самостоятельный хостинг',
-                translations: { en: 'Self-hosting' },
-                link: '/getting-started/self-host/',
-              },
+              // {
+              //   label: 'Самостоятельный хостинг',
+              //   translations: { en: 'Self-hosting' },
+              //   link: '/getting-started/self-host/',
+              // },
               {
                 label: 'Мобильный доступ',
                 translations: { en: 'Mobile access' },
                 link: '/getting-started/mobile-access/',
               },
-              {
-                label: 'Поддержка',
-                translations: { en: 'Support' },
-                link: '/getting-started/support/',
-              },
+              // {
+              //   label: 'Поддержка',
+              //   translations: { en: 'Support' },
+              //   link: '/getting-started/support/',
+              // },
             ],
           },
           // {
@@ -204,12 +204,12 @@ export default defineConfig({
                 link: '/task-tracking/components/',
               },
               {
-                label: 'Вехи',
+                label: 'Этапы',
                 translations: { en: 'Milestones' },
                 link: '/task-tracking/milestones/',
               },
               {
-                label: 'Соавторы задач',
+                label: 'Участники задач',
                 translations: { en: 'Issue collaborators' },
                 link: '/task-tracking/issue-collaborators/',
               },
@@ -255,11 +255,11 @@ export default defineConfig({
                 translations: { en: 'Team planner' },
                 link: '/team-resources/team-planner/',
               },
-              {
-                label: 'Управление персоналом',
-                translations: { en: 'Human resources' },
-                link: '/team-resources/human-resources/',
-              },
+              // {
+              //   label: 'Управление персоналом',
+              //   translations: { en: 'Human resources' },
+              //   link: '/team-resources/human-resources/',
+              // },
             ],
           },
           {
@@ -455,16 +455,16 @@ export default defineConfig({
           //     },
           //   ],
           // },
-          {
-            label: 'Дополнительные модули',
-            translations: { en: 'Additional modules' },
-            collapsed: true,
-            items: [
-              {
-                label: 'Управление тестами',
-                translations: { en: 'Test management' },
-                link: '/additional-modules/test-management/',
-              },
+          // {
+          //   label: 'Дополнительные модули',
+          //   translations: { en: 'Additional modules' },
+          //   collapsed: true,
+          //   items: [
+              // {
+              //   label: 'Управление тестами',
+              //   translations: { en: 'Test management' },
+              //   link: '/additional-modules/test-management/',
+              // },
               // {
               //   label: "Рекрутинг",
               //   translations: { en: "Recruiting" },
@@ -485,8 +485,8 @@ export default defineConfig({
               //   translations: { en: "Trainings" },
               //   link: "/additional-modules/trainings/",
               // },
-            ],
-          },
+          //   ],
+          // },
           {
             label: 'Расширенные настройки',
             translations: { en: 'Advanced settings' },
