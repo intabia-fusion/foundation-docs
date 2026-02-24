@@ -5,6 +5,7 @@ description: Узнайте, как создать проект в вашем р
 
 import { Image } from 'astro:assets';
 import createProject from '../../../../assets/screenshots/huly/tracker-create-project.png';
+import createNewProject from '../../../../assets/screenshots/huly/new-project.png';
 
 ## Что такое проекты?
 
@@ -19,15 +20,16 @@ import createProject from '../../../../assets/screenshots/huly/tracker-create-pr
 2. Нажмите значок `+`, который появляется при наведении на «Проекты» на боковой панели, или нажмите выпадающее меню рядом с кнопкой `+ Новая задача` и выберите `Создать проект`. 
 3. Откроется диалоговое окно, где вы можете ввести начальные настройки для вашего проекта. После ввода желаемых настроек нажмите `Создать`.
 
+<a href={createNewProject.src} target="_blank" rel="noopener noreferrer">
 <Image 
-src={createProject} 
+src={createNewProject} 
 alt='Создание проекта' 
 inferSize
 quality='max'
 />
+</a>
 
 ## Настройки проекта
-
 При создании или редактировании проекта вы можете настроить следующие параметры:
 
 **Тип проекта**: Тип проекта по умолчанию — «Классический проект». Вы можете создавать собственные типы проектов в настройках рабочего пространства.

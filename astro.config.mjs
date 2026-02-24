@@ -53,11 +53,11 @@ export default defineConfig({
                 translations: { en: 'Learn the basics' },
                 link: '/getting-started/learn-the-basics/',
               },
-              {
-                label: 'API и другие инструменты',
-                translations: { en: 'API & other tools' },
-                link: '/getting-started/api-tools/',
-              },
+              // {
+              //   label: 'API и другие инструменты',
+              //   translations: { en: 'API & other tools' },
+              //   link: '/getting-started/api-tools/',
+              // },
               // {
               //   label: 'Самостоятельный хостинг',
               //   translations: { en: 'Self-hosting' },

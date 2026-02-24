@@ -6,6 +6,7 @@ description: Узнайте, как создать задачу в вашем р
 import { Image } from "astro:assets";
 import LocalVideo from "../../../../components/LocalVideo.astro";
 import createIssue from "../../../../assets/screenshots/huly/tracker-create-issue.png";
+import createNewIssue from "../../../../assets/screenshots/huly/new-issue.png";
 
 ## Что такое задачи?
 
@@ -21,7 +22,8 @@ import createIssue from "../../../../assets/screenshots/huly/tracker-create-issu
 
 > **Примечание:** Если вы уйдёте со страницы во время создания задачи, вы заметите, что кнопка `+ Новая задача` станет `+ Восстановить черновик`. Нажмите на неё, чтобы снова открыть задачу, над которой работали.
 
-<Image src={createIssue} alt="Создание задачи" inferSize quality="max" />
+<a href={createNewIssue.src} target="_blank" rel="noopener noreferrer">
+<Image src={createNewIssue} alt="Создание задачи" inferSize quality="max" /></a>
 
 ## Настройки задачи
 
@@ -57,8 +59,4 @@ import createIssue from "../../../../assets/screenshots/huly/tracker-create-issu
 - Если задачи не находятся в бэклоге, все новые задачи должны иметь статус «К выполнению», чтобы система создала [активность](/ru/task-tracking/creating-action-items) для назначенного участника команды.
 - В соответствии с лучшими практиками, статус задачи не должен требовать ручного изменения с «К выполнению» на «В работе» или «Готово». Статус задачи может автоматически определяться статусом активности назначенного участника команды. Чтобы узнать больше о том, как этот процесс автоматизирован (и почему), прочитайте больше об активностях (ранее называвшихся «todos») <a href="https://huly.io/blog/capturing-dynamic-team-workflows-with-action-items" target="_blank">здесь</a>.
 
-## Углублённое изучение с нашим видеоуроком
 
-Посмотрите наш урок по отслеживанию задач в "Интабия. Платформа" для пошагового руководства по созданию задач, назначению активностей и получению максимальной отдачи от автоматизации задач.
-
-<LocalVideo id="ljpz0bZ75JA" posterQuality="max" />
