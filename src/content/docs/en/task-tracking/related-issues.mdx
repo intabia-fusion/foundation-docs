@@ -1,6 +1,6 @@
 ---
 title: Related and blocking issues
-description: Learn how to create an issue in your Foundation workspace.
+description: Learn how to create an issue in your Intabia Platform workspace.
 ---
 
 import { Image } from 'astro:assets';
@@ -11,7 +11,7 @@ import filteredIssues from '../../../../assets/screenshots/huly/tracker-filter-i
 
 While it's possible to connect multiple issues together by creating sub-issues, sometimes you may want to connect two issues that don't have a direct parent-child relationship. For example, two issues may deal with a similar component, or one issue might be blocking another. In these cases, you can use issue relations to connect them in your task tracker.
 
-There are a few options available for connecting related issues in Foundation:
+There are a few options available for connecting related issues in Intabia Platform:
 
 * Referencing an issue that already exists in your tracker
 * Creating a new issue that will be related to an existing issue
@@ -21,7 +21,7 @@ There are a few options available for connecting related issues in Foundation:
 
 On the details page for any issue, open the dropdown menu and select `Relations`, then `Reference another issue`. From here, you can select an any issue from the list of suggestions, or search for a specific issue by typing in the search bar. After you've selected an issue, you'll see it appear in the "Related to" field in the issue details, where you can click to navigate directly to the related issue.
 
-> **Note:** You can also choose to reference other objects in Foundation, like people or documents. These features will be covered separately in a future guide.
+> **Note:** You can also choose to reference other objects in Intabia Platform, like people or documents. These features will be covered separately in a future guide.
 
 <Image 
 src={relatedIssue} 
@@ -42,7 +42,7 @@ There may be cases where one issue is dependent on another, and you want to indi
 
 Open the dropdown menu on any issue detail page and select `Relations`, then choose `Mark as blocked by`. Then, select the blocking issue from the menu. This will add the issue to the "Blocked by" field in the issue details.
 
-> **Note:** The current implementation does not actually prevent a blocked issue from being marked as complete before the blocking issue, but future versions of Foundation will include a more complete development of this feature. In the meantime, you can use this feature as a visual indicator of dependencies between issues. Just like any other issue property, blocking can also be used when sorting issues in your tracker (see below).
+> **Note:** The current implementation does not actually prevent a blocked issue from being marked as complete before the blocking issue, but future versions of Intabia Platform will include a more complete development of this feature. In the meantime, you can use this feature as a visual indicator of dependencies between issues. Just like any other issue property, blocking can also be used when sorting issues in your tracker (see below).
 
 ## Viewing related and blocked issues
 
