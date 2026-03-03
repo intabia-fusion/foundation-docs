@@ -8,8 +8,11 @@ import { Image } from "astro:assets";
 import settingsProcessStates from "../../../../assets/screenshots/huly/settings-process-states.png";
 import settingsCustomProcessStates from "../../../../assets/screenshots/huly/settings-custom-process-states.png";
 import settingsCustomProjectType from "../../../../assets/screenshots/huly/settings-custom-project-type.png";
+import classicProject from "../../../../assets/screenshots/huly/classic-project.png";
+import newClassicProject from "../../../../assets/screenshots/huly/new-classic-project.png";
+import newCustomProject from "../../../../assets/screenshots/huly/new-custom-project.png";
 
-<LocalVideo id="EVmZr1Ybi8c" posterQuality="max" />
+
 
 "Интабия. Платформа" разработана для высокой настраиваемости под любой тип рабочего процесса. Хотя некоторые функции настройки всё ещё разрабатываются, уже доступно несколько опций для настройки вашего рабочего пространства под ваши конкретные нужды.
 
@@ -23,12 +26,14 @@ import settingsCustomProjectType from "../../../../assets/screenshots/huly/setti
 
 Тип задачи `Задача` имеет состояния процесса `Бэклог`, `К выполнению`, `В работе`, `Готово` и `Отменено`.
 
+<a href={classicProject.src} target="_blank" rel="noopener noreferrer">
 <Image
-  src={settingsProcessStates}
+  src={classicProject}
   alt="Настройки состояний процесса"
   inferSize
   quality="max"
 />
+</a>
 
 > **Примечание:** Если вы уже подключили ваше рабочее пространство к GitHub, вы также увидите тип задачи `Pull request`. Эти задачи синхронизируются с GitHub, поэтому у них есть свои уникальные свойства и состояния процесса.
 
@@ -63,12 +68,14 @@ import settingsCustomProjectType from "../../../../assets/screenshots/huly/setti
 
 Вы также можете создавать новые состояния процесса. Например, в категории статуса «Активный» вы можете добавить больше состояний, таких как «Начато», «В работе», «Отправлено на проверку» и «На проверке». Вы также можете добавить более конкретные состояния, такие как «Отменено», «Приостановлено» или «Заблокировано».
 
+<a href={newClassicProject.src} target="_blank" rel="noopener noreferrer">
 <Image
-  src={settingsCustomProcessStates}
+  src={newClassicProject}
   alt="Настройки пользовательских состояний процесса"
   inferSize
   quality="max"
 />
+</a>
 
 ## Использование пользовательских типов задач
 
@@ -76,11 +83,13 @@ import settingsCustomProjectType from "../../../../assets/screenshots/huly/setti
 
 При создании нового проекта выберите ваши пользовательские типы задач из выпадающего меню `Тип проекта`.
 
+<a href={newCustomProject.src} target="_blank" rel="noopener noreferrer">
 <Image
-  src={settingsCustomProjectType}
+  src={newCustomProject}
   alt="Использование пользовательского типа проекта"
   inferSize
   quality="max"
 />
+</a>
 
 Теперь при создании новых задач в вашем проекте вы найдёте все ваши пользовательские типы задач и состояния процесса, доступные для использования.

@@ -7,8 +7,8 @@ import { Image } from 'astro:assets';
 import liveTranscription from '../../../../assets/screenshots/huly/hulia-live-transcription.png';
 import liveTranscriptionGuide from '../../../../assets/screenshots/huly/hulia-live-transcription-guide.png';
 import liveTranscriptionViewAll from '../../../../assets/screenshots/huly/hulia-live-transcription-view-all.png';
+import newTranscription from '../../../../assets/screenshots/huly/new-transcription.png';
 
-<LocalVideo id="1c7wi_RMKJY" posterQuality="max" />
 
 Познакомьтесь с Julia AI, первым ИИ-ассистентом "Интабия. Платформа"! Julia AI транскрибирует встречи в реальном времени, сохраняя их как переписку в чате, в которой вы можете реагировать, отвечать и добавлять сообщения в закладки, как в любом другом чате.
 
@@ -48,12 +48,14 @@ quality='max'
 
 Вы можете увидеть любые ранее сохранённые транскрипции, перейдя в виртуальный офис и выбрав значок `Протокол встречи` в верхнем левом углу. Здесь вы увидите список всех транскрипций с ваших предыдущих встреч. Вы также можете удалить транскрипции, которые не хотите сохранять в вашем рабочем пространстве. Для этого нажмите правой кнопкой мыши на нужном протоколе и выберите "Удалить".
 
+<a href={newTranscription.src} target="_blank" rel="noopener noreferrer">
 <Image 
-src={liveTranscriptionViewAll} 
+src={newTranscription} 
 alt='Список прошлых транскрипций' 
 inferSize
 quality='max'
 />
+</a>
 
 Вы также можете просмотреть транскрипции для конкретной комнаты. Нажмите на любую переговорную комнату в офисе и найдите транскрипцию в разделе `Протокол встречи`.
 

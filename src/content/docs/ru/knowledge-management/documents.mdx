@@ -8,8 +8,14 @@ import LocalVideo from "../../../../components/LocalVideo.astro";
 import documentMention from "../../../../assets/screenshots/huly/documents-mention.png";
 import documentNote from "../../../../assets/screenshots/huly/documents-note.png";
 import tableFormatting from "../../../../assets/screenshots/huly/table-formatting.png";
+import newMention from "../../../../assets/screenshots/huly/new-mention.png";
+import newNote from "../../../../assets/screenshots/huly/new-note.png";
+import delNote from "../../../../assets/screenshots/huly/del-note.png";
 
-<LocalVideo id="6mz0OmGPq3Q" posterQuality="max" />
+
+
+
+
 
 Документы в "Интабия. Платформа" имеют множество применений, включая обмен справочными материалами между членами команды, совместную работу над документами, сохранение заметок со встреч и назначение активностей. Это руководство познакомит вас с основами создания и форматирования документов, а также с некоторыми доступными опциями для управления документами. Для более продвинутых функций документов см. следующие руководства:
 
@@ -60,20 +66,39 @@ import tableFormatting from "../../../../assets/screenshots/huly/table-formattin
 
 Используйте `@`, чтобы отметить любую задачу или документ в "Интабия. Платформа". Скоро все объекты в "Интабия. Платформа" будут доступны для тегирования в любом месте, включая файлы Диска, пространства и многое другое.
 
-<Image src={documentMention} alt="Упоминание в документе" inferSize quality="max" />
+<a href={newMention.src} target="_blank" rel="noopener noreferrer">
+<Image 
+src={newMention} 
+alt='Упоминание в документе' 
+inferSize
+quality='max'
+/>
+</a>
+
 
 ## Добавление заметок
 
 Чтобы добавить заметку к документу, выделите текст, к которому хотите добавить заметку, и нажмите значок `Заметка` в плавающей панели инструментов. Введите содержимое заметки и выберите цвет, затем нажмите `Установить`. Заметки будут отображаться как маленький значок рядом с текстом, к которому вы их добавили, и их может просматривать любой, у кого есть доступ к документу.
 
+<a href={newNote.src} target="_blank" rel="noopener noreferrer">
 <Image
-  src={documentNote}
+  src={newNote}
   alt="Добавление заметки к документу"
   inferSize
   quality="max"
 />
+</a>
 
 Чтобы отредактировать или удалить заметку, просто выделите тот же текст и нажмите на значок заметки, чтобы открыть диалоговое окно. Оттуда вы можете обновить содержимое и цвет заметки или нажать `Удалить`, чтобы удалить её.
+
+<a href={delNote.src} target="_blank" rel="noopener noreferrer">
+<Image
+  src={delNote}
+  alt="Удаление заметки"
+  inferSize
+  quality="max"
+/>
+</a>
 
 ## Добавление комментариев
 
@@ -93,12 +118,7 @@ import tableFormatting from "../../../../assets/screenshots/huly/table-formattin
 
 Вы также можете изменять размер столбцов, нажимая и перетаскивая линии между ними.
 
-<Image
-  src={tableFormatting}
-  alt="Параметры форматирования таблиц"
-  inferSize
-  quality="max"
-/>
+
 
 ## Просмотр обратных ссылок
 
@@ -106,15 +126,7 @@ import tableFormatting from "../../../../assets/screenshots/huly/table-formattin
 
 Обратные ссылки также будут отображаться в разделе Активность в нижней части документа.
 
-<div style="position: relative; padding-top: 56.25%;">
-  <iframe
-    src="https://customer-davn16od7sue0s1k.cloudflarestream.com/d79854816e2015056dba03d32f65e1d5/iframe?poster=https%3A%2F%2Fcustomer-davn16od7sue0s1k.cloudflarestream.com%2Fd79854816e2015056dba03d32f65e1d5%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
-    loading="lazy"
-    style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
-    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-    allowfullscreen="true"
-  ></iframe>
-</div>
+
 
 ## Скачивание и печать в PDF
 

@@ -7,13 +7,12 @@ import { Image } from 'astro:assets';
 import LocalVideo from "../../../../components/LocalVideo.astro";
 import notificationsSettingsActivity from '../../../../assets/screenshots/huly/settings-notifications-activity.png';
 import trackerSubscribed from '../../../../assets/screenshots/huly/tracker-subscribed.png';
-
+import trackerNotification from '../../../../assets/screenshots/huly/notification-issuses.png';
+import subscribedIssuses from '../../../../assets/screenshots/huly/sub-issuses.png';
 
 Задачи можно назначить только одному человеку, но вы можете добавлять участников, чтобы держать других членов команды в курсе активности по задаче. Участники будут получать уведомления об активности задачи в соответствии со своими личными настройками уведомлений.
 
-Посмотрите наше демонстрационное видео для быстрого обзора:
 
-<LocalVideo id='1_bb3N2UT04' posterQuality='max' />
 
 ## Добавление участников к задаче
 
@@ -29,12 +28,14 @@ import trackerSubscribed from '../../../../assets/screenshots/huly/tracker-subsc
 
 Чтобы управлять уведомлениями, перейдите в Настройки и выберите `Уведомления` в меню левой боковой панели. Затем выберите `Задачи`. Настройки уведомлений для задач одинаковы независимо от того, являетесь ли вы владельцем, исполнителем или участником задачи. В этом меню настроек вы можете выбрать, о каких видах активности задачи хотите получать уведомления. Push-уведомления, уведомления по электронной почте и в Telegram также можно включить или отключить.
 
+<a href={trackerNotification.src} target="_blank" rel="noopener noreferrer">
 <Image 
-    src={notificationsSettingsActivity} 
-    alt="Настройки уведомлений для активности задач" 
+    src={trackerNotification} 
+    alt="Настройки уведомлений для задач" 
     inferSize 
     quality="max" 
 />
+</a>
 
 ## Просмотр задач, на которые вы подписаны
 
@@ -42,11 +43,13 @@ import trackerSubscribed from '../../../../assets/screenshots/huly/tracker-subsc
 
 Перейдите в Трекер и выберите `Мои задачи` в левой боковой панели. Затем выберите `Отслеживаемые` в меню в правом верхнем углу. Этот фильтр покажет вам все задачи, в которых вы являетесь участником, владельцем или исполнителем.
 
+<a href={subscribedIssuses428.src} target="_blank" rel="noopener noreferrer">
 <Image 
-    src={trackerSubscribed} 
-    alt="Просмотр отслеживаемых задач в Трекере" 
+    src={subscribedIssuses} 
+    alt="Просмотр отслеживаемых задач в трекере" 
     inferSize 
     quality="max" 
 />
+</a>
 
 Как и в любом другом модуле Трекера, вы можете фильтровать и сортировать задачи, чтобы найти именно то, что нужно, и сохранять пользовательские настройки для быстрого доступа позже. Чтобы узнать больше о настройках Трекера, см. наше руководство по [просмотру и сортировке задач](/ru/task-tracking/viewing-issues).

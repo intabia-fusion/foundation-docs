@@ -5,6 +5,8 @@ description: Узнайте, как настроить рабочее прост
 
 import { Image } from "astro:assets";
 import settingsCustomProjectType from "../../../../assets/screenshots/huly/settings-custom-project-type.png";
+import newCustomProject from "../../../../assets/screenshots/huly/new-custom-project.png";
+
 
 ## Что такое типы пространств?
 
@@ -32,11 +34,12 @@ import settingsCustomProjectType from "../../../../assets/screenshots/huly/setti
 
 Пользовательские типы пространств не могут использоваться для существующих проектов. Чтобы использовать пользовательский тип пространства, вам нужно создать новый проект и выбрать пользовательский тип пространства из выпадающего меню `Тип пространства`.
 
+<a href={newCustomProject.src} target="_blank" rel="noopener noreferrer">
 <Image
-  src={settingsCustomProjectType}
+  src={newCustomProject}
   alt="Использование пользовательского типа проекта"
   inferSize
   quality="max"
 />
-
+</a>
 Если вы добавили роли, вы сможете добавлять участников к каждой роли при создании проекта.

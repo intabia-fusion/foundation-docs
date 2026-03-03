@@ -5,6 +5,8 @@ description: Узнайте, как управлять типами уведом
 
 import { Image } from 'astro:assets';
 import notificationSettings from '../../../../assets/screenshots/huly/settings-notifications.png';
+import newNotification from '../../../../assets/screenshots/huly/new-notification.png';
+
 
 Получите доступ к настройкам уведомлений, нажав на значок вашего профиля в нижнем левом углу и выбрав `Настройки`. В меню настроек выберите `Уведомления`.
 
@@ -12,12 +14,14 @@ import notificationSettings from '../../../../assets/screenshots/huly/settings-n
 
 В верхней части меню настроек выберите `Звук и внешний вид`, чтобы установить некоторые глобальные настройки для уведомлений. Здесь вы можете переключить звук уведомления, подпрыгивание иконки и отображение количества уведомлений или полностью отключить все уведомления.
 
+<a href={newNotification.src} target="_blank" rel="noopener noreferrer">
 <Image 
-src={notificationSettings} 
+src={newNotification} 
 alt='Настройки уведомлений' 
 inferSize
 quality='max'
 />
+</a>
 
 ## Настройки уведомлений
 
