@@ -4,7 +4,7 @@ import icon from 'astro-icon';
 import prefixBase from './src/rehype/prefix-base.js';
 
 export default defineConfig({
-  base: process.env.SITE_BASE || '/',
+  base: process.env.SITE_BASE || 'docs',
   markdown: {
     rehypePlugins: [[prefixBase, { base: process.env.SITE_BASE || '' }]],
   },
@@ -35,7 +35,7 @@ export default defineConfig({
             items: [
               {
                 label: 'Что такое Интабия. Платформа?',
-                translations: { en: 'What is Foundation?' },
+                translations: { en: 'What is Intabia Platform?' },
                 link: '/getting-started/introduction-platform/',
               },
               // {
