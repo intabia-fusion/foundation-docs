@@ -7,7 +7,11 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "node tests/docker-test.js",
+    "test:links": "node tests/link-checker.js",
+    "docker:build": "docker build -t intabiafusion/platform-docs:test .",
+    "docker:test": "npm run docker:build && npm run test"
   },
   "dependencies": {
   },
