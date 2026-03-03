@@ -245,23 +245,23 @@ export default defineConfig({
               },
             ],
           },
-          {
-            label: 'Командные ресурсы',
-            translations: { en: 'Team resources' },
-            collapsed: true,
-            items: [
-              {
-                label: 'Командный планировщик',
-                translations: { en: 'Team planner' },
-                link: '/team-resources/team-planner/',
-              },
-              // {
-              //   label: 'Управление персоналом',
-              //   translations: { en: 'Human resources' },
-              //   link: '/team-resources/human-resources/',
-              // },
-            ],
-          },
+          // {
+          //   label: 'Командные ресурсы',
+          //   translations: { en: 'Team resources' },
+          //   collapsed: true,
+          //   items: [
+          //     {
+          //       label: 'Командный планировщик',
+          //       translations: { en: 'Team planner' },
+          //       link: '/team-resources/team-planner/',
+          //     },
+          //     {
+          //       label: 'Управление персоналом',
+          //       translations: { en: 'Human resources' },
+          //       link: '/team-resources/human-resources/',
+          //     },
+          //   ],
+          // },
           {
             label: 'Управление знаниями',
             translations: { en: 'Knowledge management' },
@@ -425,11 +425,11 @@ export default defineConfig({
                 translations: { en: 'Employees' },
                 link: '/people-contacts/employees/',
               },
-              {
-                label: 'Связывание задач',
-                translations: { en: 'Connecting tasks' },
-                link: '/people-contacts/connecting-tasks/',
-              },
+              // {
+              //   label: 'Связывание задач',
+              //   translations: { en: 'Connecting tasks' },
+              //   link: '/people-contacts/connecting-tasks/',
+              // },
             ],
           },
           // {
