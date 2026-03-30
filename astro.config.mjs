@@ -507,11 +507,11 @@ export default defineConfig({
                 translations: { en: 'Task types' },
                 link: '/advanced-settings/task-types/',
               },
-              {
-                label: 'Классы и перечисления',
-                translations: { en: 'Classes and enums' },
-                link: '/advanced-settings/classes-enums/',
-              },
+              // {
+              //   label: 'Классы и перечисления',
+              //   translations: { en: 'Classes and enums' },
+              //   link: '/advanced-settings/classes-enums/',
+              // },
               {
                 label: 'Текстовые шаблоны',
                 translations: { en: 'Text templates' },
