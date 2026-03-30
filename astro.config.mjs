@@ -12,7 +12,7 @@ export default defineConfig({
     [
       starlight({
         customCss: ['./src/styles.css'],
-        title: 'Интабия. Платформа',
+        title: 'Интабия Платформа',
         favicon: '/favicon.ico',
         components: {
           SocialIcons: './src/components/CustomSocialIcons.astro',
@@ -23,10 +23,10 @@ export default defineConfig({
             label: 'Русский',
             lang: 'ru',
           },
-          en: {
-            label: 'English',
-            lang: 'en',
-          },
+          // en: {
+          //   label: 'English',
+          //   lang: 'en',
+          // },
         },
         sidebar: [
           {
@@ -34,7 +34,7 @@ export default defineConfig({
             translations: { en: 'Getting started' },
             items: [
               {
-                label: 'Что такое Интабия. Платформа?',
+                label: 'Что такое Интабия Платформа?',
                 translations: { en: 'What is Intabia Platform?' },
                 link: '/getting-started/introduction-platform/',
               },
@@ -460,31 +460,31 @@ export default defineConfig({
           //   translations: { en: 'Additional modules' },
           //   collapsed: true,
           //   items: [
-              // {
-              //   label: 'Управление тестами',
-              //   translations: { en: 'Test management' },
-              //   link: '/additional-modules/test-management/',
-              // },
-              // {
-              //   label: "Рекрутинг",
-              //   translations: { en: "Recruiting" },
-              //   link: "/additional-modules/recruiting/",
-              // },
-              // {
-              //   label: "Лиды",
-              //   translations: { en: "Leads" },
-              //   link: "/additional-modules/leads/",
-              // },
-              // {
-              //   label: "Опросы",
-              //   translations: { en: "Surveys" },
-              //   link: "/additional-modules/surveys/",
-              // },
-              // {
-              //   label: "Обучение",
-              //   translations: { en: "Trainings" },
-              //   link: "/additional-modules/trainings/",
-              // },
+          // {
+          //   label: 'Управление тестами',
+          //   translations: { en: 'Test management' },
+          //   link: '/additional-modules/test-management/',
+          // },
+          // {
+          //   label: "Рекрутинг",
+          //   translations: { en: "Recruiting" },
+          //   link: "/additional-modules/recruiting/",
+          // },
+          // {
+          //   label: "Лиды",
+          //   translations: { en: "Leads" },
+          //   link: "/additional-modules/leads/",
+          // },
+          // {
+          //   label: "Опросы",
+          //   translations: { en: "Surveys" },
+          //   link: "/additional-modules/surveys/",
+          // },
+          // {
+          //   label: "Обучение",
+          //   translations: { en: "Trainings" },
+          //   link: "/additional-modules/trainings/",
+          // },
           //   ],
           // },
           {
