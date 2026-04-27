@@ -421,6 +421,11 @@ export default defineConfig({
                 link: '/people-contacts/managing-contacts/',
               },
               {
+                label: 'Управление аккаунтом',
+                translations: { en: 'Managing account' },
+                link: '/people-contacts/managing-account/',
+              },
+              {
                 label: 'Сотрудники',
                 translations: { en: 'Employees' },
                 link: '/people-contacts/employees/',
