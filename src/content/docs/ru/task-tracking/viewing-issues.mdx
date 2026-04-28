@@ -5,6 +5,7 @@ description: Узнайте, как просматривать и сортиро
 import { Image } from 'astro:assets';
 import trackerissuepeek from '../../../../assets/screenshots/huly/trackerissuepeek.png';
 import issuePeek from '../../../../assets/screenshots/huly/issuePeek.gif';
+import swimlane from '../../../../assets/screenshots/huly/swimlane.png';
 
 ## Представления списком и канбан
 
@@ -43,6 +44,28 @@ quality='max'
 <Image 
 src={issuePeek} 
 alt='Сортировка, фильтрация и поиск' 
+inferSize
+quality='max'
+/>
+</a>
+
+## Дорожка (Swimlane)
+
+Дорожка (Swimlane) - визуальный инструмент горизонтальной группировки задач. Каждая дорожка закреплена за конкретным сотрудником, отделом, ролью или системой, что наглядно показывает ответственность, зоны взаимодействия и последовательность действий. 
+
+В настройках доски (Канбан) можно выбрать группировку по:
+
+* Исполнителю;
+* Приоритету;
+* Компоненту;
+* Этапу;
+* Родителю;
+* Проекту.
+
+<a href={swimlane.src} target="_blank" rel="noopener noreferrer">
+<Image 
+src={swimlane} 
+alt='Дорожка (Swimlane)' 
 inferSize
 quality='max'
 />
