@@ -1,3 +1,5 @@
+
+
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import icon from 'astro-icon';
@@ -234,6 +236,11 @@ export default defineConfig({
                 link: '/task-tracking/issue-templates/',
               },
               {
+                label: 'Отчеты по времени',
+                translations: { en: 'Issue templates' },
+                link: '/task-tracking/time-reports/',
+              },
+              {
                 label: 'Создание активностей',
                 translations: { en: 'Creating action items' },
                 link: '/task-tracking/creating-action-items/',
@@ -373,6 +380,71 @@ export default defineConfig({
             translations: { en: 'Communication' },
             collapsed: true,
             items: [
+                 {
+                  label: 'Чаты',
+                  translations: { en: 'Chats' },
+                  items: [
+                    {
+                      label: 'Отправка сообщений',
+                      translations: { en: 'Outgoing messages' },
+                      link: '/communication/sending-messages/',
+                    },
+                    {
+                      label: 'Входящие',
+                      translations: { en: 'Incoming messages' },
+                      link: '/communication/inbox/',
+                    },
+                  ],
+                },
+              {
+                  label: 'Активности',
+                  translations: { en: 'Activities' },
+                  items: [
+                    {
+                      label: 'Встроенные комментарии',
+                      translations: { en: 'Inline comments' },
+                      link: '/communication/inline-comments/',
+                    },
+                    {
+                      label: 'Отслеживание активности',
+                      translations: { en: 'Activity tracking' },
+                      link: '/communication/chat-activity/', 
+                    },
+                  ],
+              },  
+              {
+                  label: 'Конференции',
+                  translations: { en: 'Conferences' },
+                  items: [
+                    {
+                      label: 'Виртуальный офис',
+                      translations: { en: 'Virtual office' },
+                      link: '/communication/virtual-office/',
+                    },
+                    {
+                      label: 'Транскрибация в реальном времени',
+                      translations: { en: 'Live transcription' },
+                      link: '/communication/live-transcription/',
+                    },
+                  ],
+              },
+                  {
+                  label: 'Уведомления',
+                  translations: { en: 'Notifications' },
+                  items: [
+                    {
+                      label: 'Настройки уведомлений',
+                      translations: { en: 'Notification settings' },
+                      link: '/communication/notifications/',
+                    },
+                  ],
+                },
+          
+              {
+                label: 'Уведомления',
+                translations: { en: 'Notifications' },
+                link: '/communication/notifications/',
+              },
               {
                 label: 'Отслеживание активности в чате',
                 translations: { en: 'Activity tracking in chat' },
@@ -393,11 +465,7 @@ export default defineConfig({
                 translations: { en: 'Inbox' },
                 link: '/communication/inbox/',
               },
-              {
-                label: 'Уведомления',
-                translations: { en: 'Notifications' },
-                link: '/communication/notifications/',
-              },
+              
               {
                 label: 'Виртуальный офис',
                 translations: { en: 'Virtual office' },
