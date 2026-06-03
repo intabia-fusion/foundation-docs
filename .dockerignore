@@ -6,7 +6,6 @@ pnpm-debug.log
 .env
 .env.local
 .env.*.local
-dist
 .astro
 .git
 .github

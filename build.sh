@@ -92,6 +92,17 @@ if ! docker info &> /dev/null; then
     exit 1
 fi
 
+# Build the static site on host (sharp/libvips runs native, avoids QEMU segfault)
+echo -e "${YELLOW}Building static site on host...${NC}"
+if ! command -v pnpm &> /dev/null; then
+    echo -e "${RED}Error: pnpm is not installed (required to build site on host)${NC}"
+    exit 1
+fi
+pnpm install --frozen-lockfile
+SITE_BASE=/docs pnpm run build
+echo -e "${GREEN}✓ Static site built${NC}"
+echo ""
+
 # Determine if we need buildx (multi-platform builds)
 IS_MULTI_PLATFORM=false
 if [ -n "$PLATFORM" ]; then
