@@ -201,6 +201,16 @@ export default defineConfig({
                 link: '/task-tracking/creating-issues/',
               },
               {
+                label: 'Просмотр и сортировка задач',
+                translations: { en: 'Viewing and sorting issues' },
+                link: '/task-tracking/viewing-issues/',
+              },            
+              {
+                label: 'Участники задач',
+                translations: { en: 'Issue collaborators' },
+                link: '/task-tracking/issue-collaborators/',
+              },
+              {
                 label: 'Компоненты',
                 translations: { en: 'Components' },
                 link: '/task-tracking/components/',
@@ -211,19 +221,9 @@ export default defineConfig({
                 link: '/task-tracking/milestones/',
               },
               {
-                label: 'Участники задач',
-                translations: { en: 'Issue collaborators' },
-                link: '/task-tracking/issue-collaborators/',
-              },
-              {
                 label: 'Метки',
                 translations: { en: 'Labels' },
                 link: '/task-tracking/labels/',
-              },
-              {
-                label: 'Просмотр и сортировка задач',
-                translations: { en: 'Viewing and sorting issues' },
-                link: '/task-tracking/viewing-issues/',
               },
               {
                 label: 'Связанные задачи',
@@ -236,11 +236,6 @@ export default defineConfig({
                 link: '/task-tracking/issue-templates/',
               },
               {
-                label: 'Отчеты по времени',
-                translations: { en: 'Issue templates' },
-                link: '/task-tracking/time-reports/',
-              },
-              {
                 label: 'Создание активностей',
                 translations: { en: 'Creating action items' },
                 link: '/task-tracking/creating-action-items/',
@@ -250,25 +245,31 @@ export default defineConfig({
                 translations: { en: 'Scheduling action items' },
                 link: '/task-tracking/scheduling-action-items/',
               },
+              {
+                label: 'Отчеты по времени',
+                translations: { en: 'Issue templates' },
+                link: '/task-tracking/time-reports/',
+              }
             ],
           },
-          // {
-          //   label: 'Командные ресурсы',
-          //   translations: { en: 'Team resources' },
-          //   collapsed: true,
-          //   items: [
-          //     {
-          //       label: 'Командный планировщик',
-          //       translations: { en: 'Team planner' },
-          //       link: '/team-resources/team-planner/',
-          //     },
+          {
+          //  label: 'Командные ресурсы',
+          label: 'Планировщик',
+            translations: { en: 'Team resources' },
+            collapsed: true,
+            items: [
+              {
+                label: 'Командный планировщик',
+                translations: { en: 'Team planner' },
+                 link: '/team-resources/team-planner/',
+              }
           //     {
           //       label: 'Управление персоналом',
           //       translations: { en: 'Human resources' },
           //       link: '/team-resources/human-resources/',
           //     },
-          //   ],
-          // },
+            ],
+          },
           {
             label: 'Управление знаниями',
             translations: { en: 'Knowledge management' },
@@ -440,7 +441,7 @@ export default defineConfig({
                   ],
                 },
           
-              {
+            /*  {
                 label: 'Уведомления',
                 translations: { en: 'Notifications' },
                 link: '/communication/notifications/',
@@ -475,7 +476,7 @@ export default defineConfig({
                 label: 'Транскрибация в реальном времени',
                 translations: { en: 'Live transcription' },
                 link: '/communication/live-transcription/',
-              },
+              },*/
             ],
           },
           {
@@ -488,16 +489,17 @@ export default defineConfig({
                 translations: { en: 'Managing contacts' },
                 link: '/people-contacts/managing-contacts/',
               },
-              {
-                label: 'Управление аккаунтом',
-                translations: { en: 'Managing account' },
-                link: '/people-contacts/managing-account/',
-              },
-              {
+                            {
                 label: 'Сотрудники',
                 translations: { en: 'Employees' },
                 link: '/people-contacts/employees/',
               },
+              {
+                label: 'Управление аккаунтом',
+                translations: { en: 'Managing account' },
+                link: '/people-contacts/managing-account/',
+              }
+
               // {
               //   label: 'Связывание задач',
               //   translations: { en: 'Connecting tasks' },
@@ -566,29 +568,48 @@ export default defineConfig({
             collapsed: true,
             items: [
               {
-                label: 'Типы пространств',
-                translations: { en: 'Space types' },
-                link: '/advanced-settings/space-types/',
+                label: 'Главное меню',
+                translations: { en: 'Main menu settings' },
+                items: [
+                  {
+                    label: 'Настройки',
+                    translations: { en: 'Space types' },
+                    link: '/advanced-settings/main-menu/',
+                  }
+                ] 
               },
               {
-                label: 'Роли и разрешения',
-                translations: { en: 'Roles and permissions' },
-                link: '/advanced-settings/roles/',
-              },
-              {
-                label: 'Типы задач',
-                translations: { en: 'Task types' },
-                link: '/advanced-settings/task-types/',
-              },
-              // {
-              //   label: 'Классы и перечисления',
-              //   translations: { en: 'Classes and enums' },
-              //   link: '/advanced-settings/classes-enums/',
-              // },
-              {
-                label: 'Текстовые шаблоны',
-                translations: { en: 'Text templates' },
-                link: '/advanced-settings/text-templates/',
+                label: 'Настройки пространств',
+                translations: { en: 'Advanced settings' },
+                items: [
+                  {
+                    label: 'Типы пространств',
+                    translations: { en: 'Space types' },
+                    link: '/advanced-settings/space-types/',
+                  },
+                  
+                  
+                  {
+                    label: 'Роли и разрешения',
+                    translations: { en: 'Roles and permissions' },
+                    link: '/advanced-settings/roles/',
+                  },
+                  {
+                    label: 'Типы задач',
+                    translations: { en: 'Task types' },
+                    link: '/advanced-settings/task-types/',
+                  },
+                  // {
+                  //   label: 'Классы и перечисления',
+                  //   translations: { en: 'Classes and enums' },
+                  //   link: '/advanced-settings/classes-enums/',
+                  // },
+                  {
+                    label: 'Текстовые шаблоны',
+                    translations: { en: 'Text templates' },
+                    link: '/advanced-settings/text-templates/',
+                  },
+                ],
               },
             ],
           },
