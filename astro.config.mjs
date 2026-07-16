@@ -262,6 +262,11 @@ export default defineConfig({
                 label: 'Командный планировщик',
                 translations: { en: 'Team planner' },
                  link: '/team-resources/team-planner/',
+              },
+              {
+                label: 'Присоединиться к встрече по ссылке',
+                translations: { en: 'Join the meeting via the link' },
+                 link: '/team-resources/invite-link/',
               }
           //     {
           //       label: 'Управление персоналом',
@@ -427,6 +432,11 @@ export default defineConfig({
                       translations: { en: 'Live transcription' },
                       link: '/communication/live-transcription/',
                     },
+                    {
+                      label: 'Присоединиться к встрече по ссылке',
+                      translations: { en: 'Join the meeting via the link' },
+                      link: '/communication/invite-link/',
+                    }
                   ],
               },
                   {

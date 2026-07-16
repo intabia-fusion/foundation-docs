@@ -1,0 +1,147 @@
+---
+title: Присоединиться к встрече по ссылке
+description: Узнайте, как создать встречу в планировщике и пригласить участников по гостевой ссылке. 
+---
+
+import { Image } from "astro:assets";
+import invitelink1 from "../../../../assets/screenshots/huly/invite-link1.png";
+import invitelink2 from "../../../../assets/screenshots/huly/invite-link2.png";
+import joinmeeting1 from "../../../../assets/screenshots/huly/join-meeting1.png";
+import joinmeeting2 from "../../../../assets/screenshots/huly/join-meeting2.png";
+import joinmeeting3 from "../../../../assets/screenshots/huly/join-meeting3.png";
+import setting1 from "../../../../assets/screenshots/huly/setting1.png";
+import setting3 from "../../../../assets/screenshots/huly/setting3.png";
+import setting4 from "../../../../assets/screenshots/huly/setting4.png";
+
+
+## Создать встречу в планировщике
+
+1. Нажмите на “Планировщик” в левом меню
+2. В календаре выберите дату и временной слот, нажав на пустое поле соответствующее заданным параметрам.
+3. Откроется модальное окно, где задаются параметры планируемого события:
+<div style={{ height: "4px" }}></div>
+<a href={invitelink1.src} target="_blank" rel="noopener noreferrer">
+<Image 
+src={invitelink1} 
+alt='Создание события в календаре' 
+inferSize
+quality='max'
+/>
+</a>
+
+<div style={{ height: "4px" }}></div>
+- Название события
+- Время события
+- Продолжительность события
+- Повтор события
+- Часовой пояс события
+- Месторасположение
+- Участники встречи (можно добавить из существующего списка или добавить нового участника с возможностью внесения его контактных данных)
+- Создать встречу
+- Выбрать переговорную комнату из виртуального офиса
+- Добавить описание события
+- Добавить встречу в личный календарь
+- Установить приватность: видно всем, видно только вам, скрыть детали.
+- Добавить напоминание 
+
+4. После заполнения полей, сохраните данные, чтобы создать встречу.
+5. В календаре отобразится созданная встреча, открыв которое можно скопировать ссылку на встречу или перейти по ссылке прямо из события.
+<div style={{ height: "4px" }}></div>
+<a href={invitelink2.src} target="_blank" rel="noopener noreferrer">
+<Image 
+src={invitelink2} 
+alt='Перейти по ссылке из события' 
+inferSize
+quality='max'
+/>
+</a>
+
+
+
+
+## Присоединиться к встрече по ссылке
+
+1. Нажмите на гостевую ссылку, чтобы присоединиться к встрече.
+2. В браузерном окне появится форма, где нужно выбрать параметры входа:
+
+- начать с видео;
+- начать с аудио;
+- разрешить транскрибацию;
+- указать имя и фамилию;
+- дать согласие на обработку персональных данных;
+- подтвердить пользовательское соглашение.
+<div style={{ height: "4px" }}></div>
+<a href={joinmeeting1.src} target="_blank" rel="noopener noreferrer">
+<Image 
+src={joinmeeting1} 
+alt='Заполнение формы встречи' 
+inferSize
+quality='max'
+/>
+</a>
+<div style={{ height: "4px" }}></div>
+3. Далее нажмите на кнопку, чтобы присоединиться к встрече.
+4. Вы в переговорной комнате.
+<div style={{ height: "4px" }}></div>
+<a href={joinmeeting2.src} target="_blank" rel="noopener noreferrer">
+<Image 
+src={joinmeeting2} 
+alt='Управление переговорной комнатой' 
+inferSize
+quality='max'
+/>
+</a>
+<div style={{ height: "4px" }}></div>
+С помощью кнопок можно включать и выключать камеру и микрофон, демонстрировать экран, развернуть окно во весь экран.
+
+5. По завершению встречи перейдите по кнопке “Покинуть комнату”.
+6. Встреча завершена.
+<div style={{ height: "4px" }}></div>
+<a href={joinmeeting3.src} target="_blank" rel="noopener noreferrer">
+<Image 
+src={joinmeeting3} 
+alt='Завершение встречи' 
+inferSize
+quality='max'
+/>
+</a>
+
+## Настройки камеры и микрофона
+
+1. После перехода по гостевой ссылке в окне браузер появятся сетевый настройки.
+2. Необходимо разрешить доступ к камере и микрофону.  Для этого выберите из предложенных вариантов: 
+- разрешить, когда я на сайте; 
+- разрешить в этот раз;
+- запретить.
+<div style={{ height: "4px" }}></div>
+<a href={setting1.src} target="_blank" rel="noopener noreferrer">
+<Image 
+src={setting1} 
+alt='Настройка камеры' 
+inferSize
+quality='max'
+/>
+</a>
+<div style={{ height: "4px" }}></div>
+3. Если у Вас установлен антивирус, необходимо также проверить настройки доступа к камере и микрофону в программе.
+- Перейдите в меню программы антивируса.
+<div style={{ height: "4px" }}></div>
+<a href={setting3.src} target="_blank" rel="noopener noreferrer">
+<Image 
+src={setting3} 
+alt='Настройка антивируса' 
+inferSize
+quality='max'
+/>
+</a>
+<div style={{ height: "4px" }}></div>
+- Установите разрешение для подключения к камере и микрофону и сохраните настройки.
+<div style={{ height: "4px" }}></div>
+<a href={setting4.src} target="_blank" rel="noopener noreferrer">
+<Image 
+src={setting4} 
+alt='Сохранение настроек' 
+inferSize
+quality='max'
+/>
+</a>
