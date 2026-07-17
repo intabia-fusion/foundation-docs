@@ -56,3 +56,7 @@
   padding: 20px;
   transition: background-color 0.3s ease-in-out;
 }
+
+.compact-list li p {
+  margin: 0;
+}

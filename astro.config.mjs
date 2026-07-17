@@ -264,9 +264,9 @@ export default defineConfig({
                  link: '/team-resources/team-planner/',
               },
               {
-                label: 'Присоединиться к встрече по ссылке',
+                label: 'Создать событие в планировщике',
                 translations: { en: 'Join the meeting via the link' },
-                 link: '/team-resources/invite-link/',
+                 link: '/team-resources/create-event/',
               }
           //     {
           //       label: 'Управление персоналом',
