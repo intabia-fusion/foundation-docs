@@ -186,15 +186,25 @@ export default defineConfig({
           //   ],
           // },
          {
-          label: 'Тарифы и оплаты',
+          label: 'Тарифы и оплата',
           translations: { en: 'Tariffs and payments' },
           collapsed: true,
           items: [
               {
-                label: 'Тарифные планы и оплата',
-                translations: { en: 'Tariff plans and payment' },
-                link: '/tariffs/tariff-and-payment/',
+                label: 'Тарифные планы',
+                translations: { en: 'Tariff plans' },
+                link: '/tariffs/tariff-plans/',
               },
+              {
+                label: 'Смена тарифа',
+                translations: { en: 'Tariff change' },
+                link: '/tariffs/tariff-change/',
+              },
+              {
+                label: 'Использование ресурсов',
+                translations: { en: 'Using resources' },
+                link: '/tariffs/using-resources/',
+              },              
           ]
          },
           {
