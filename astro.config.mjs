@@ -185,6 +185,18 @@ export default defineConfig({
           //     },
           //   ],
           // },
+         {
+          label: 'Тарифы и оплаты',
+          translations: { en: 'Tariffs and payments' },
+          collapsed: true,
+          items: [
+              {
+                label: 'Тарифные планы и оплата',
+                translations: { en: 'Tariff plans and payment' },
+                link: '/tariffs/tariff-and-payment/',
+              },
+          ]
+         },
           {
             label: 'Управление задачами',
             translations: { en: 'Task tracking' },
