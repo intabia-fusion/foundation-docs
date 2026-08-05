@@ -1,0 +1,57 @@
+---
+title: Тарифы и оплата
+description: Выбор тарифного плана и подключение подписки 
+---
+
+import { Image } from "astro:assets";
+import trial from  "../../../../assets/screenshots/huly/tariffs/trial.png";
+import activeTariff from  "../../../../assets/screenshots/huly/tariffs/active-tariff.png";
+import updateSubscribe from  "../../../../assets/screenshots/huly/tariffs/update-subscribe.png";
+import result from  "../../../../assets/screenshots/huly/tariffs/result.png";
+import changePlaces from  "../../../../assets/screenshots/huly/tariffs/change-places.png";
+import resurces from  "../../../../assets/screenshots/huly/tariffs/resurces.png";
+import statistics from  "../../../../assets/screenshots/huly/tariffs/statistics.png";
+
+## Использование ресурсов
+
+Посмотреть количество использованных ресурсов можно, нажав на иконку в верхней панели на любой страницы. Во вплывающем окне можно 
+увидеть основные характеристики по условиям тарифа.
+
+   <div style={{ height: "4px" }}></div>
+   <a href={resurces.src} target="_blank" rel="noopener noreferrer">
+   <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <Image 
+    src={resurces} 
+    alt='Ресурсы' 
+    inferSize
+    quality='max'
+    />
+   </div>
+   </a>
+   <div style={{ height: "4px" }}></div>
+
+Более подробная информация находится в разделе “Биллинг” во вкладке “Использование ресурсов”. 
+
+На странице отображается статистика по использованным ресурсам:
+- размер файлов и количество файлов на диске,
+- время транскрибации и количество токенов,
+- суммарное количество минут по всем участникам,
+- время записи,
+- средняя продолжительность встреч,
+- максимальная продолжительность встреч.
+
+   <div style={{ height: "4px" }}></div>
+   <a href={statistics.src} target="_blank" rel="noopener noreferrer">
+   <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <Image 
+    src={statistics} 
+    alt='Статистика' 
+    inferSize
+    quality='max'
+    />
+   </div>
+   </a>
+   <div style={{ height: "4px" }}></div>
+
+
+
