@@ -3,6 +3,8 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import icon from 'astro-icon';
+import compress from 'astro-compress';
+import compressor from 'astro-compressor';
 import prefixBase from './src/rehype/prefix-base.js';
 
 export default defineConfig({
@@ -14,8 +16,20 @@ export default defineConfig({
     [
       starlight({
         customCss: ['./src/styles.css'],
-        title: 'Интабия Платформа',
-        favicon: '/favicon.ico',
+        title: 'Платформа',
+        favicon: '/favicon.svg',
+        logo: {
+          light: './src/assets/logo-intabia.png',
+          dark: './src/assets/logo-intabia-white.png',
+          alt: 'Интабия',
+        },
+        head: [
+          {
+            // Клик по картинке в контенте открывает её в <dialog>, если оригинал крупнее показанного
+            tag: 'script',
+            content: `document.addEventListener('click',e=>{const i=e.target.closest('.sl-markdown-content img');if(!i)return;const a=i.closest('a');if(a)e.preventDefault();if(i.naturalWidth&&i.naturalWidth<=i.clientWidth)return;let d=document.getElementById('img-zoom');if(!d){d=document.createElement('dialog');d.id='img-zoom';d.innerHTML='<img>';d.addEventListener('click',()=>d.close());document.body.append(d);}d.firstChild.src=a?a.href:(i.currentSrc||i.src);d.showModal();});`,
+          },
+        ],
         components: {
           SocialIcons: './src/components/CustomSocialIcons.astro',
         },
@@ -649,6 +663,9 @@ export default defineConfig({
       }),
     ],
     [icon()],
+    // Image: false - картинки уже пережимает Astro (src/assets), в public только видео
+    compress({ Image: false }),
+    compressor({ gzip: true, brotli: true, zstd: false }),
   ],
   image: {
     service: {

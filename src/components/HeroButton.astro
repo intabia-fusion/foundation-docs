@@ -11,34 +11,7 @@ const base = import.meta.env.BASE_URL || '';
 const fullLink = `${base}${link}`.replace(/\/+/g, '/'); // Normalize slashes
 ---
 
-<a 
-  href={fullLink}
-  class={`btn btn-${variant}`}
-  style={{
-    marginTop: '2rem',
-    marginBottom: '2rem',
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    padding: '0.75rem 1.5rem',
-    borderRadius: '0.5rem',
-    fontWeight: '600',
-    textDecoration: 'none',
-    transition: 'all 0.2s ease',
-    ...(variant === 'primary' 
-      ? {
-          backgroundColor: '#0070f3',
-          color: 'white',
-          border: '1px solid #0070f3',
-        } 
-      : {
-          backgroundColor: 'white',
-          color: '#0070f3',
-          border: '1px solid #0070f3',
-        }
-    ),
-  }}
->
+<a href={fullLink} class={`btn btn-${variant}`}>
   {text}
   {icon === 'right-arrow' && (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -48,13 +21,38 @@ const fullLink = `${base}${link}`.replace(/\/+/g, '/'); // Normalize slashes
 </a>
 
 <style>
-  .btn:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 112, 243, 0.15);
+  .btn {
+    margin: 2rem 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
-  
-  .btn:active {
-    transform: translateY(0);
+
+  .btn-primary {
+    background-color: var(--brand);
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--brand-hover);
+  }
+
+  .btn-primary:active {
+    background-color: var(--brand-active);
+  }
+
+  .btn-secondary {
+    background-color: var(--brand-secondary);
+    color: var(--sl-color-white);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--brand-secondary-hover);
   }
 </style>

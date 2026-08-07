@@ -1,33 +1,85 @@
+@import '@fontsource/open-sans/400.css';
+@import '@fontsource/open-sans/600.css';
+@import '@fontsource/open-sans/700.css';
+
+/* Токены бренда - синхронизированы с intabia-platform-landing (src/styles/global.css). */
+:root {
+	--brand: rgb(207, 19, 162);
+	--brand-light: rgb(255, 109, 220);
+	--brand-hover: rgb(166, 15, 130);
+	--brand-active: rgb(124, 11, 97);
+
+	--brand-additional: rgb(107, 58, 211);
+	--brand-secondary: rgba(107, 58, 211, 0.1);
+	--brand-secondary-hover: rgba(107, 58, 211, 0.25);
+
+	--sl-font: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
 /* Dark mode colors. */
 :root {
-	--sl-color-accent-low: #122342;
-	--sl-color-accent: #245cc3;
-	--sl-color-accent-high: #b2caf2;
+	--sl-color-accent-low: #4a0739;
+	--sl-color-accent: #cf13a2;
+	--sl-color-accent-high: #ff6ddc;
 	--sl-color-white: #ffffff;
-	--sl-color-gray-1: #eeeeee;
-	--sl-color-gray-2: #c2c2c2;
-	--sl-color-gray-3: #8b8b8b;
-	--sl-color-gray-4: #585858;
-	--sl-color-gray-5: #383838;
-	--sl-color-gray-6: #1A1928;
-	--sl-color-black: #242839;
-	--rounded-box-bg:rgb(39, 57, 92);
+	--sl-color-gray-1: #e6e3e9;
+	--sl-color-gray-2: #c1bac8;
+	--sl-color-gray-3: #8c6e9f;
+	--sl-color-gray-4: #5b3a70;
+	--sl-color-gray-5: #330a4c;
+	--sl-color-gray-6: #260839;
+	--sl-color-black: #16041f;
+	--rounded-box-bg: rgba(165, 123, 255, 0.12);
 }
 /* Light mode colors. */
 :root[data-theme='light'] {
-	--sl-color-accent-low: #c6d8f7;
-	--sl-color-accent: #245cc3;
-	--sl-color-accent-high: #153061;
-	--sl-color-white: #181818;
-	--sl-color-gray-1: #272727;
-	--sl-color-gray-2: #383838;
-	--sl-color-gray-3: #585858;
-	--sl-color-gray-4: #8b8b8b;
-	--sl-color-gray-5: #c2c2c2;
-	--sl-color-gray-6: #eeeeee;
-	--sl-color-gray-7: #DDE4F6;
-	--sl-color-black: #ffffff;
-	--rounded-box-bg:rgb(231, 237, 250);
+	--sl-color-accent-low: #fbdcf3;
+	--sl-color-accent: #cf13a2;
+	--sl-color-accent-high: #7c0b61;
+	--sl-color-white: #1a1a1a;
+	--sl-color-gray-1: #333333;
+	--sl-color-gray-2: #4a4a4a;
+	--sl-color-gray-3: #6b6b6b;
+	--sl-color-gray-4: #8c6e9f;
+	--sl-color-gray-5: #cdc8d3;
+	--sl-color-gray-6: #e6e3e9;
+	--sl-color-gray-7: #f0eef1;
+	--sl-color-black: #f5f4f5;
+	--rounded-box-bg: rgba(107, 58, 211, 0.1);
+}
+
+/* У логотипа-вордмарка «intabia» насечка сверху, поэтому центр картинки выше слова.
+   Выравниваем по базовой линии: низ картинки = базовая линия текста. */
+.site-title {
+	align-items: baseline;
+}
+
+/* Логотип ниже дефолтных 40px - иначе насечка упирается в верх шапки. */
+.site-title img {
+	height: 2rem;
+}
+
+/* Кнопки Starlight (hero actions, LinkButton) в стиле лендинга: пилюля + бренд. */
+.action.primary,
+.sl-link-button.primary {
+	border-radius: 9999px;
+	background: var(--brand);
+	border-color: var(--brand);
+	color: #fff;
+}
+
+.action.primary:hover,
+.sl-link-button.primary:hover {
+	background: var(--brand-hover);
+	border-color: var(--brand-hover);
+	color: #fff;
+}
+
+.action.secondary,
+.action.minimal,
+.sl-link-button.secondary,
+.sl-link-button.minimal {
+	border-radius: 9999px;
 }
 
 [data-icon] {
@@ -59,4 +111,29 @@
 
 .compact-list li p {
   margin: 0;
+}
+
+.sl-markdown-content img {
+  cursor: zoom-in;
+}
+
+#img-zoom {
+  border: none;
+  padding: 0;
+  margin: auto;
+  background: transparent;
+  max-width: none;
+  max-height: none;
+}
+
+#img-zoom img {
+  display: block;
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  cursor: zoom-out;
+}
+
+#img-zoom::backdrop {
+  background: rgba(0, 0, 0, 0.7);
 }

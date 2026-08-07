@@ -15,21 +15,21 @@ Relations are bi-directional, meaning that a Relation will appear on both Cards 
 
 > **Below:** The `Item` is shown on the `Character` Card
 
-<Image src={characterItemRelation} alt="Character Card" inferSize quality="max" />
+<Image src={characterItemRelation} alt="Character Card" inferSize />
 
 > **Below:** The `Character` is shown on the `Item` Card
 
-<Image src={itemCharacterRelation} alt="Item Card" inferSize quality="max" />
+<Image src={itemCharacterRelation} alt="Item Card" inferSize />
 
 References, on the other hand, are one-directional. A Reference will only appear on the ***Referring*** Card, and a Reference is a type of attribute. Instead of using a Relation to define the association between `Character` and `Item`, you can add a Reference attribute to the `Character` Type that references the `Item` Type. This can be a single-select or multi-select attribute, depending on your use case. In this case, the `Item` Card will not show which `Character` possesses it.
 
 > **Below:** Add a reference attribute to the `Character` Type in Settings
 
-<Image src={characterItemRefSettings} alt="Setting a reference attribute on a Type" inferSize quality="max" />
+<Image src={characterItemRefSettings} alt="Setting a reference attribute on a Type" inferSize />
 
 > **Below:** Select `Item` Cards on the `Character` Card using the Reference attribute
 
-<Image src={characterItemRefCard} alt="Using a reference attribute on a Card" inferSize quality="max" />
+<Image src={characterItemRefCard} alt="Using a reference attribute on a Card" inferSize />
 
 ## Deciding whether to use a Relation or Reference
 

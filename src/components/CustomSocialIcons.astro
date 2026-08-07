@@ -2,10 +2,19 @@
 import Default from '@astrojs/starlight/components/SocialIcons.astro';
 import { Icon } from '@astrojs/starlight/components';
 
+// Ссылки на лендинг: он живёт в корне того же домена, docs - под /docs.
+const navLinks = [
+  { name: 'Блог', href: '/blog' },
+  { name: 'Демо', href: '/#demo' },
+];
 ---
 
 <Default {...Astro.props}><slot /></Default>
 <div class="custom-social-icons">
+    <nav class="landing-links">
+        {navLinks.map((link) => <a href={link.href}>{link.name}</a>)}
+    </nav>
+    <a class="login" href="/login">Войти</a>
     <a href="https://github.com/intabia-fusion/foundation" target="_blank" rel="noreferrer">
         <Icon name="github" color="var(--sl-color-accent-high)" size="1.2rem" />
     </a>
@@ -23,5 +32,37 @@ import { Icon } from '@astrojs/starlight/components';
         color: var(--sl-color-accent-high);
         text-decoration: none;
         font-weight: 400;
+    }
+    .landing-links {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    .landing-links a {
+        color: var(--sl-color-white);
+        font-weight: 600;
+        white-space: nowrap;
+    }
+    .landing-links a:hover {
+        color: var(--sl-color-accent-high);
+    }
+    .login {
+        padding: 0.4rem 1.25rem;
+        border-radius: 9999px;
+        background: var(--brand-secondary);
+        color: var(--sl-color-white);
+        font-weight: 600;
+        white-space: nowrap;
+        transition: background-color 0.2s ease;
+    }
+    .login:hover {
+        background: var(--brand-secondary-hover);
+    }
+
+    /* В узкой шапке остаётся только «Войти» - иначе не хватает места поиску. */
+    @media (max-width: 72rem) {
+        .landing-links {
+            display: none;
+        }
     }
 </style>

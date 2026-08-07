@@ -24,7 +24,7 @@ import swimlane from '../../../../assets/screenshots/huly/swimlane.png';
 src={trackerissuepeek} 
 alt='Быстрый просмотр задачи' 
 inferSize
-quality='max'
+
 />
 </a>
 
@@ -41,12 +41,8 @@ quality='max'
 Для быстрой сортировки выберите `Активные`, `Пул задач` или `Все` из меню над панелью поиска.
 
 <a href={issuePeek.src} target="_blank" rel="noopener noreferrer">
-<Image 
-src={issuePeek} 
-alt='Сортировка, фильтрация и поиск' 
-inferSize
-quality='max'
-/>
+{/* Анимированный gif - в обход astro:assets, sharp раздувает его в webp с 1.9MB до 23MB */}
+<img src={issuePeek.src} alt='Сортировка, фильтрация и поиск' loading='lazy' />
 </a>
 
 ## Дорожка (Swimlane)
@@ -67,6 +63,6 @@ quality='max'
 src={swimlane} 
 alt='Дорожка (Swimlane)' 
 inferSize
-quality='max'
+
 />
 </a>
