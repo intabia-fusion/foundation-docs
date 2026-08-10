@@ -7,6 +7,48 @@ import compress from 'astro-compress';
 import compressor from 'astro-compressor';
 import prefixBase from './src/rehype/prefix-base.js';
 
+const siteBase = '/' + (process.env.SITE_BASE || 'docs').replace(/^\/|\/$/g, '');
+
+// Шрифты лежат в public/fonts со стабильными именами (Astro хеширует всё, что импортируется
+// из src) - иначе на них не сослаться из <link rel=preload>. Без preload браузер узнаёт о
+// шрифте только после разбора CSS, и текст перерисовывается на каждом переходе.
+const fonts = [
+  ['open-sans-cyrillic-400-normal.woff2', 400, 'U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116'],
+  ['open-sans-cyrillic-600-normal.woff2', 600, 'U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116'],
+  [
+    'open-sans-latin-400-normal.woff2',
+    400,
+    'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD',
+  ],
+  [
+    'open-sans-latin-600-normal.woff2',
+    600,
+    'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD',
+  ],
+];
+
+const fontHead = [
+  ...fonts.map(([file]) => ({
+    tag: 'link',
+    attrs: {
+      rel: 'preload',
+      href: `${siteBase}/fonts/${file}`,
+      as: 'font',
+      type: 'font/woff2',
+      crossorigin: 'anonymous',
+    },
+  })),
+  {
+    tag: 'style',
+    content: fonts
+      .map(
+        ([file, weight, range]) =>
+          `@font-face{font-family:'Open Sans';font-style:normal;font-weight:${weight};font-display:swap;src:url('${siteBase}/fonts/${file}') format('woff2');unicode-range:${range}}`
+      )
+      .join(''),
+  },
+];
+
 export default defineConfig({
   base: process.env.SITE_BASE || 'docs',
   markdown: {
@@ -24,10 +66,11 @@ export default defineConfig({
           alt: 'Интабия',
         },
         head: [
+          ...fontHead,
           {
             // Клик по картинке в контенте открывает её в <dialog>, если оригинал крупнее показанного
             tag: 'script',
-            content: `document.addEventListener('click',e=>{const i=e.target.closest('.sl-markdown-content img');if(!i)return;const a=i.closest('a');if(a)e.preventDefault();if(i.naturalWidth&&i.naturalWidth<=i.clientWidth)return;let d=document.getElementById('img-zoom');if(!d){d=document.createElement('dialog');d.id='img-zoom';d.innerHTML='<img>';d.addEventListener('click',()=>d.close());document.body.append(d);}d.firstChild.src=a?a.href:(i.currentSrc||i.src);d.showModal();});`,
+            content: `(()=>{const z=i=>!(i.naturalWidth&&i.naturalWidth<=i.clientWidth);const t=e=>{const i=e.target.closest('.sl-markdown-content img');if(!i)return null;const n=i.closest('a');if(n&&n.textContent.trim())return null;return{i:i,a:n};};document.addEventListener('mouseover',e=>{const r=t(e);if(r)r.i.style.cursor=z(r.i)?'zoom-in':(r.a?'default':'');});document.addEventListener('click',e=>{const r=t(e);if(!r)return;if(r.a)e.preventDefault();if(!z(r.i))return;let d=document.getElementById('img-zoom');if(!d){d=document.createElement('dialog');d.id='img-zoom';d.innerHTML='<img>';d.addEventListener('click',()=>d.close());document.body.append(d);}d.firstChild.src=r.a?r.a.href:(r.i.currentSrc||r.i.src);d.showModal();});})();`,
           },
         ],
         components: {
