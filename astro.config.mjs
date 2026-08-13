@@ -261,7 +261,12 @@ export default defineConfig({
                 label: 'Использование ресурсов',
                 translations: { en: 'Using resources' },
                 link: '/tariffs/using-resources/',
-              },              
+              }, 
+              {
+                label: 'Уведомления',
+                translations: { en: 'Notifications' },
+                link: '/tariffs/notification-letters/',
+              },                  
           ]
          },
           {
