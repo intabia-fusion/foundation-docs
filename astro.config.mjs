@@ -601,6 +601,23 @@ export default defineConfig({
               // },
             ],
           },
+          {
+            label: 'Интеграции',
+            translations: { en: 'Integrations' },
+            collapsed: true,
+            items: [
+              {
+                label: 'API-ключи',
+                translations: { en: 'API keys' },
+                link: '/integrations/api-keys/',
+              },
+              {
+                label: 'Вебхуки',
+                translations: { en: 'Webhooks' },
+                link: '/integrations/webhooks/',
+              },
+            ],
+          },
           // {
           //   label: "Интеграции",
           //   translations: { en: "Integrations" },

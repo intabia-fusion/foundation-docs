@@ -1,0 +1,280 @@
+---
+title: Webhooks
+description: How to call Intabia Platform operations from external systems, and how to receive platform events on your side.
+---
+
+import { Image } from "astro:assets";
+import overview from "../../../../assets/screenshots/huly/webhooks/integrations-overview.png";
+import exampleIncoming from "../../../../assets/screenshots/huly/webhooks/webhook-example-incoming.png";
+import exampleOutgoing from "../../../../assets/screenshots/huly/webhooks/webhook-example-outgoing.png";
+import webhookCreate from "../../../../assets/screenshots/huly/webhooks/webhook-create.png";
+import webhookEndpoint from "../../../../assets/screenshots/huly/webhooks/webhook-endpoint.png";
+import webhookDeliveries from "../../../../assets/screenshots/huly/webhooks/webhook-deliveries.png";
+
+
+Webhooks work both ways:
+
+- **incoming** — HTTP requests from external systems that perform operations in a workspace on behalf of an [API key](/en/integrations/api-keys): creating and updating issues, commenting on them, logging time, posting chat messages, creating and updating documents;
+- **outgoing** — HTTP requests the platform sends you when something happens in the workspace.
+
+Both are configured in **Settings → API + Webhooks**. The same page has an **Examples** section: pick an operation or an event and a real object, and get a ready request body with real identifiers substituted.
+
+<Image src={overview} alt='The API + Webhooks section' inferSize />
+
+# Incoming webhooks
+
+## Request format
+
+There are two endpoints for the same call.
+
+The main one — the key in the `Authorization` header:
+
+```bash
+curl -X POST 'https://<host>/_webhook/api/v1/webhook/action' \
+  -H 'Authorization: Bearer fus_myworkspace_7f3a9c1d2e4f5061728394a5b6c7d8e9f0a1b2c3d4e5f60718293a4b5c6d7e8' \
+  -H 'Content-Type: application/json' \
+  -H 'Idempotency-Key: 3f29a1d2-6b1a-4e51-9b0a-6a1c9d8e7f21' \
+  -d '{
+    "action": "issue:create",
+    "space": "FUSIO",
+    "title": "Sync failing for tenant X",
+    "description": "Steps to reproduce:\n1. Open integration settings\n2. Click Sync",
+    "assignee": "dev@example.com",
+    "priority": "high"
+  }'
+```
+
+The second one — the same key right in the path, for senders (some no-code services, for example) that can only configure a URL, without custom headers of their own:
+
+```bash
+curl -X POST 'https://<host>/_webhook/api/v1/webhook/k/fus_myworkspace_7f3a9c1d2e4f5061728394a5b6c7d8e9f0a1b2c3d4e5f60718293a4b5c6d7e8' \
+  -H 'Content-Type: application/json' \
+  -d '{"action": "chat:post", "space": "general", "message": "Deploy finished"}'
+```
+
+A key in the path ends up whole in proxy and load-balancer access logs — use this variant only when a header isn't available. It also has a stricter rate limit (see below).
+
+There is no workspace in the address: the key itself decides it. The exact addresses of your installation are shown in **Settings → API + Webhooks → Examples → Incoming request**, ready to copy.
+
+<Image src={exampleIncoming} alt='Incoming request example' inferSize />
+ The request body is always JSON in the shape `{ "action": "...", "space": "...", ...operation-specific fields }`; `action` selects which operation runs, and `space` is that operation's target in the sender's own terms — a project id, an issue id, a channel name, or a teamspace name, depending on the operation (see the table below).
+
+## Operations
+
+| `action` | What it does | Required fields | Optional fields |
+|---|---|---|---|
+| `issue:create` | Creates an issue | `space` — project identifier (e.g. `FUSIO`); `title` | `description` (markdown), `assignee` (email), `priority`, `estimation` (number), `parent` (parent issue identifier) |
+| `issue:update` | Updates an issue | `space` — **issue** identifier (e.g. `FUSIO-42`) | `title`, `description`, `priority`, `assignee` (email, or `null` to unassign), `status` (status name) |
+| `issue:comment` | Comments on an issue | `space` — issue identifier; `message` | — |
+| `issue:time_report` | Logs time on an issue, or edits an existing entry when `id` is given | `space` — issue identifier; to create, also `employee` (email), `date` (`YYYY-MM-DD`), `hours` (greater than zero) | `description`; `id` — time report id: when present, only the fields you send are changed on that entry |
+| `chat:post` | Posts a message to a channel | `space` — channel name or id; `message` | — |
+| `doc:create` | Creates a document | `space` — teamspace name; `title` | `content` (markdown), `parent` (parent document id) |
+| `doc:update` | Updates a document | `space` — document id | `title`, `content` |
+
+How references are resolved:
+
+- A **project** (`issue:create`) is looked up by project identifier, and an **issue** (`issue:update`, `issue:comment`, and `parent` for `issue:create`) is looked up by its own identifier like `FUSIO-42`.
+- The **assignee** is looked up by email as a verified social identity on a contact.
+- A **channel** (`chat:post`) is looked up by id first, then by name if no id matched; if the name matches more than one channel, the request fails.
+- A **status** (`issue:update`) is matched by name, case-insensitively, among the statuses available to the issue's project's task type.
+- A **time report** (`issue:time_report`): `employee` is looked up by email just like `assignee`; on an edit, `id` is checked against the issue from `space`, so another issue's entry cannot be touched. The id comes back from the create call (`reportId`) and rides along in the outgoing `issue.time_reported` event.
+- A **teamspace** (`doc:create`) is looked up by name. A **document**, though — both the one updated by `doc:update` and the `parent` in `doc:create` — is only accepted as a raw internal id: documents don't yet have a human-readable identifier like `FUSIO-42` to look up by title.
+
+`priority` values (case-insensitive): `urgent`, `high`, `medium`, `low`, `none` (alias: `no_priority`).
+
+## Response and job status
+
+Both ingest endpoints respond with `202` and `{ "jobId": "wh_..." }` on success — the request is accepted and queued, and processing happens asynchronously.
+
+Checking a job's status:
+
+```bash
+curl 'https://<host>/_webhook/api/v1/webhook/job/wh_1a2b3c4d5e' \
+  -H 'Authorization: Bearer fus_myworkspace_7f3a9c1d2e4f5061728394a5b6c7d8e9f0a1b2c3d4e5f60718293a4b5c6d7e8'
+```
+
+Response:
+
+```json
+{
+  "jobId": "wh_1a2b3c4d5e",
+  "status": "done",
+  "createdAt": 1735689600000,
+  "result": { "identifier": "FUSIO-142" }
+}
+```
+
+`status` is `queued`, `done`, or `failed`. `result` is present only when `done`, and holds whatever the operation returned (for example, `identifier` for `issue:create`/`issue:update`, `messageId` for `issue:comment`/`chat:post`, `docId` for `doc:create`/`doc:update`). `error` is present only when `failed` and holds the failure reason. Any active key from the same workspace can check a job's status — it doesn't have to be the key that created the job.
+
+Job records are kept for about a day — after that, `GET job/{id}` returns `not_found` even for a job that actually ran.
+
+## Error codes
+
+An error response is always JSON in the shape `{ "error": "<code>", "message": "<text>" }`.
+
+| `error` | HTTP | Meaning |
+|---|---|---|
+| `unauthorized` | 401 | The key is missing, unknown, revoked, expired, or issued for a different workspace. The response is deliberately identical in all of these cases, so it doesn't hint at which keys exist. |
+| `forbidden` | 403 | The key doesn't grant the operation named in `action` — it wasn't selected when the key was issued. |
+| `invalid_payload` | 400 | The body is missing required `action`/`space`, or `action` isn't one of the known operations. |
+| `payload_too_large` | 413 | The request body exceeds 1 MB. |
+| `rate_limited` | 429 | The rate limit was exceeded. |
+| `not_found` | 404 | No job with that `id` (or it belongs to a different workspace); the same code is used for an unknown path. |
+| `internal_error` | 500 | An internal error while accepting the request. |
+
+Checks run in order, and each one only runs once the previous one passed: key → request body → permission for the operation → rate limit → idempotency → enqueue. The one exception is `413`: an oversized body is rejected before the request reaches this chain at all.
+
+## Rate limits
+
+Request rate is limited with a sliding window, separately per key and per source IP — whichever limit runs out first applies. Defaults, requests per 60 seconds:
+
+- key in the `Authorization` header — 60;
+- key in the `/k/{key}` path — 20 (stricter: this form leaks the whole key into logs);
+- source IP — 60.
+
+A `429` response carries these headers:
+
+- `Retry-After` — seconds until it's worth retrying;
+- `Retry-After-ms` — the same, in milliseconds;
+- `X-RateLimit-Limit` — the limit for the current window;
+- `X-RateLimit-Remaining` — requests left in the window (`0` on a `429`);
+- `X-RateLimit-Reset` — when the current window resets, as Unix milliseconds (not seconds).
+
+## Idempotency
+
+The `Idempotency-Key` header takes any value you choose to be unique — your own event id or a UUID, for example. A repeated request with the same key from the same API key doesn't create a new job — it gets back the same `202` with the original request's `jobId`. Idempotency is keyed by the pair "API key + `Idempotency-Key` value" and is remembered for about a day; after that, the same value starts a new job.
+
+Deduplication doesn't compare request bodies — sending the same `Idempotency-Key` with a different body still returns the original request's `jobId`, not a result for the new body. Pick a value that's unique to the specific event.
+
+## Error and retry behavior
+
+- Errors at the ingest step (`401`, `403`, `400`, `413`, `429`) are final. Retrying the same request unchanged won't help — fix the key, the body, the permissions, or wait out the rate-limit window.
+- After a `202`, processing is asynchronous. If the operation itself fails permanently (invalid references in the body, or the key lacking rights for the target space), the job is marked `failed` right away, with no retries — the reason is visible in `error` via `GET job/{id}`.
+- Transient failures (network issues, internal services being unavailable) are retried on a schedule: 30 seconds, then 1, 2, 4, 8 minutes — up to 5 attempts in total. If the operation still fails after that, the job is marked `failed` for good.
+
+
+# Outgoing webhooks
+
+An outgoing webhook is an address the platform `POST`s an event description to. They live in **Settings → API + Webhooks → Outgoing webhooks**, a section only the workspace owner sees.
+
+Adding a recipient asks for a URL and a set of events:
+
+<Image src={webhookCreate} alt='Adding a recipient' inferSize />
+
+The address itself then carries an enable switch, a "Where it applies" list, signing secrets, a log of recent deliveries and a test-send button.
+
+<Image src={webhookEndpoint} alt='Address settings' inferSize />
+
+## Events
+
+| Type | Sent when |
+|---|---|
+| `issue.created` | An issue was created |
+| `issue.status_changed` | An issue's status changed |
+| `issue.assigned` | An issue's assignee changed |
+| `issue.commented` | A comment was added to an issue |
+| `issue.time_reported` | Time was logged on an issue |
+| `issue.time_report_updated` | A time report was edited |
+| `message.posted` | A message was posted in a channel |
+| `document.created` | A document was created |
+
+## Event body
+
+A ready sample carrying real identifiers is built in **Examples → Outgoing event**:
+
+<Image src={exampleOutgoing} alt='Outgoing event example' inferSize />
+
+```json
+{
+  "action": "update",
+  "type": "issue.status_changed",
+  "actor": "author@example.com",
+  "actorUrl": "https://fusion.example.com/workbench/acme/contact/64f10a1b2c3d4e5f6a7b8c8f",
+  "url": "https://fusion.example.com/workbench/acme/tracker/FUSIO-123",
+  "data": {
+    "id": "64f10a1b2c3d4e5f6a7b8c91",
+    "identifier": "FUSIO-123",
+    "status": "In Progress"
+  },
+  "updatedFrom": { "status": "Todo" },
+  "webhookId": "msg_2f1c9a7b",
+  "webhookTimestamp": 1789084800,
+  "organizationId": "9c858f36-6b1a-4d3a-8f2e-1a2b3c4d5e6f"
+}
+```
+
+- `action` — `create`, `update` or `remove`;
+- `type` — the event type from the table above;
+- `actor` — email of whoever made the change, `actorUrl` — a link to their card;
+- `url` — a link to the object itself: the issue, document or channel;
+- `data` — the object's state, `updatedFrom` — previous values of the changed fields (on `update` only);
+- `webhookId`, `webhookTimestamp` — delivery id and time, both part of the signature;
+- `organizationId` — the workspace id.
+
+Values in an event are the ones the incoming API accepts back, so an object can be sent straight in again: a status arrives as its **name** (`In Progress`), the assignee and the actor as **emails**, priority as a name (`urgent`, `high`, `medium`, `low`, `no_priority`), a channel as its name in `data.channel`, and the parent issue of a comment or a time report as an identifier in `data.issue`. A value that could not be resolved stays an internal id.
+
+## Signature
+
+Deliveries are signed per [Standard Webhooks](https://www.standardwebhooks.com/). Headers:
+
+| Header | Value |
+|---|---|
+| `webhook-id` | Delivery id |
+| `webhook-timestamp` | Send time, Unix seconds |
+| `webhook-signature` | Space-separated signatures, each `v1,<base64>` |
+| `X-Webhook-Delivery-Id` | The same delivery id, for your logs |
+| `X-Webhook-Attempt` | Attempt number, starting at 0 |
+
+To verify: build the string `{webhook-id}.{webhook-timestamp}.{request body}`, take HMAC-SHA256 with the key — the bytes of the secret after the `whsec_` prefix, base64-decoded — and compare the base64 result against one of the signatures in the header.
+
+```python
+import base64, hashlib, hmac
+
+def verify(secret, headers, raw_body):
+    key = base64.b64decode(secret.removeprefix("whsec_"))
+    signed = f"{headers['webhook-id']}.{headers['webhook-timestamp']}.{raw_body}".encode()
+    expected = base64.b64encode(hmac.new(key, signed, hashlib.sha256).digest()).decode()
+    return any(
+        hmac.compare_digest(expected, part.split(",", 1)[1])
+        for part in headers["webhook-signature"].split(" ")
+    )
+```
+
+Sign the **raw** body, before parsing the JSON: a body re-serialized from an object almost certainly differs in whitespace and key order, and the signature will not match. Check `webhook-timestamp` too — rejecting a delivery older than a few minutes is sensible.
+
+## Rotating a secret
+
+An address can hold two secrets at once, and every delivery is signed with both — which is why `webhook-signature` may carry more than one signature. Rotating without downtime:
+
+1. add a second secret — the receiver keeps verifying with the old one;
+2. switch the receiver to the new one;
+3. retire the old one.
+
+The last secret cannot be removed: without a secret there is nothing to sign with.
+
+## Where it applies
+
+An empty whitelist means "every private space is excluded": an event from a private project or channel leaves the workspace only when that space is named explicitly. That way an address configured by the workspace owner never carries out the contents of private spaces the owner is not even a member of.
+
+## Retries and auto-disable
+
+- A delivery is retried on `408`, `409`, `425`, `429` and any `5xx`, and on network errors and timeouts (10 seconds per attempt).
+- Schedule: 30 seconds, 1, 2, 4, 8 minutes — up to 5 attempts; after that the delivery is failed.
+- Three failed deliveries in a row disable the address and mail the workspace owner. A successful delivery resets the counter.
+- Up to 64 KB of the response is read and the body is ignored — only the status code matters.
+
+## Requirements for the address
+
+- `https` only. `http` is accepted only on a stand where the pod is configured to allow it.
+- Private and internal addresses are refused: `127.0.0.0/8`, `10/8`, `172.16/12`, `192.168/16`, `169.254/16`, `100.64/10`, `0/8`, `224/4`, their IPv6 counterparts, and the names `localhost`, `metadata`, `*.internal`, `*.local`, `*.cluster.local`. The host is resolved twice — before the request and right before connecting — so the address cannot be swapped after the check.
+- Redirects are not followed: a `3xx` counts as a failed delivery.
+
+## If events don't arrive
+
+- The address is disabled — check the switch next to the URL and the "last error" line on the address page.
+- The event is not selected in the address's event list.
+- The event happened in a private space that is not in the whitelist.
+- The signature does not match — nearly always because it was computed over re-serialized JSON instead of the raw body.
+- Nothing arrived at all — press "Send test event" on the address page: the result shows up immediately and the delivery lands in the log.
+
+<Image src={webhookDeliveries} alt="Delivery log and test send" inferSize />

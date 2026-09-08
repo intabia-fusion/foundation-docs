@@ -1,0 +1,85 @@
+---
+title: API keys
+description: Learn how to create and use Intabia Platform API keys for integrations and webhooks.
+---
+
+import { Image } from "astro:assets";
+import apiKeysList from "../../../../assets/screenshots/huly/webhooks/api-keys-list.png";
+import apiKeyPersonal from "../../../../assets/screenshots/huly/webhooks/api-key-personal.png";
+import apiKeyCreate from "../../../../assets/screenshots/huly/webhooks/api-key-create.png";
+import apiKeyOperations from "../../../../assets/screenshots/huly/webhooks/api-key-operations.png";
+import apiKeyCreated from "../../../../assets/screenshots/huly/webhooks/api-key-created.png";
+
+
+Intabia Platform supports API keys — a way to give an external integration access to a workspace without creating a regular human account for it. A key is what powers, for example, [incoming webhooks](/en/integrations/webhooks) — external systems call the Intabia Platform API on behalf of the key, not on behalf of an employee.
+
+## How a key differs from a human account
+
+- Every key has an identity of its own, and history shows it. An integration key is a separate account named after the key, not the account of whoever issued it. A personal key acts as the person themselves but under a separate identifier, so what the key wrote is told apart from what the person typed by hand.
+- A key doesn't take up a seat in your plan — integration accounts aren't counted against the workspace's seat limit.
+- A key is revoked independently and at any time, without affecting anyone's personal membership in the workspace.
+
+## Issuing a key
+
+Keys live in **Settings → API + Webhooks**. They come in two kinds:
+
+- **integration keys** — issued by the workspace owner, acting as their own integration account. Quota: 5 active per workspace;
+- **personal keys** — issued by any member for themselves, acting with that person's own rights. Quota: 5 active per person.
+
+When creating a key, you configure:
+
+- **Name** — to tell keys apart in the list and in the activity history.
+- **Operations** (integration keys only) — which write actions this key is allowed to perform (list below). Reading is always allowed and isn't limited by the operations list. An empty operations list makes the key read-only.
+- **Rights mode** (personal keys only) — "full rights" (writes with the person's own rights) or "read only". A personal key carries no operation list, see the next section.
+- **Where it applies** — an optional list of projects, channels and folders: writes are allowed only into the listed ones. Empty means the whole workspace.
+- **Token lifetime** — 1 to 90 days, 30 by default. It sets the key's own expiration too: the date is derived from this number and shown next to it, never picked separately.
+- **Incoming webhooks** — a separate flag: may this key be used on the [ingest routes](/en/integrations/webhooks). It is independent of operations: a key with full rights but without this flag is refused there.
+
+<Image src={apiKeyPersonal} alt='Creating a personal key' inferSize />
+
+An integration key picks concrete operations instead of a rights mode:
+
+<Image src={apiKeyCreate} alt='Creating an integration key' inferSize />
+
+## Where a key can write
+
+- **A key with chosen operations writes only through the operations API** — the one incoming webhooks call. An operation name exists only there; a raw transaction carries none, so there is nothing to match against the grant, and writing through the regular API is refused for such a key. Reading is unaffected.
+- **A full-rights key** (personal, "full rights" mode) writes through any API with its user's rights; a space whitelist can narrow it.
+- **A read-only key** writes nowhere.
+
+### Write operations
+
+- `issue:create` — create an issue
+- `issue:update` — update an issue
+- `issue:comment` — comment on an issue
+- `issue:time_report` — log time on an issue, and edit an entry already logged
+- `chat:post` — post a message to a channel
+- `doc:create` — create a document
+- `doc:update` — update a document
+
+<Image src={apiKeyOperations} alt='Picking key operations' inferSize />
+
+## The key is shown once
+
+The full key value is shown once, right after creation, in a dedicated dialog, and is never stored or displayed again.
+
+<Image src={apiKeyCreated} alt='The key is shown once' inferSize />
+
+After that, the key list only shows its prefix and last 4 characters — enough to recognize the right key without being able to use it.
+
+<Image src={apiKeysList} alt='API key list' inferSize />
+
+## Key format
+
+A key looks like this: `fus_<workspace>_<64 hex characters>`, for example `fus_myworkspace_7f3a9c...e21b`. The `fus_` prefix lets the key be recognized as an Intabia Platform secret — including by automated secret-leak scanners and by internal log checks.
+
+## Rotation
+
+Rotation is manual — there's no automatic refresh. While the key is still valid, the integration exchanges it for a fresh token as often as it needs, the same way it did the first time. Key and token are sized for the same span (1–90 days, 30 by default), so by the expiry date you issue a new key and hand it to the integration.
+
+## Revocation
+
+The "Revoke" button in the key list is irreversible. Immediately after revoking:
+
+- Any new call made with this key — for example, a new request to the [webhook endpoint](/en/integrations/webhooks) — is rejected: a presented key is checked against the database on every request.
+- A token already issued from this key before the revocation is not forcibly invalidated — an active integration still using that token keeps working until the token itself expires (up to 90 days at the maximum lifetime). If you need a guaranteed, immediate cutoff, keep the token lifetime short.
