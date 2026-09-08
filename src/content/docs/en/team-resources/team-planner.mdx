@@ -4,7 +4,9 @@ description: Learn how to use the team planner in Intabia Platform.
 ---
 
 import { Image } from "astro:assets";
-import teamPlanner from "../../../../assets/screenshots/huly/team-planner.png";
+import plannerTeamCalendar from "../../../../assets/screenshots/huly/planner-team-calendar.png";
+import plannerTeamAgenda from "../../../../assets/screenshots/huly/planner-team-agenda.png";
+import plannerViewSwitch from "../../../../assets/screenshots/huly/planner-view-switch.png";
 
 ## Navigating the team planner
 
@@ -14,13 +16,27 @@ The team planner breaks the agenda down by project, and you can find each of you
 
 This design allows teams with multiple projects to easily see all of the work planned for each project. This also ensures project privacy, as team members will only be able to view the planner for projects they are a member of, while the workspace owner will be able to view all projects. For this reason, it is not currently possible to view the work for all projects at the same time.
 
-### Agenda & calendar views
+### Three planner views
 
-By default, the team planner shows the agenda view of the previous and current day. You can scroll through the days using the arrow buttons in the top right corner, viewing 2 days at a time as you scroll.
+The view switch sits at the top of the planner. Your choice is remembered in the browser, so the planner opens in the same view next time.
 
-The calendar view displays either a daily or weekly calendar of each team member's tasks. In the daily calendar, tasks are displayed as blocks, and can be viewed in 1-hour or 30-minute increments. The weekly calendar displays each team member's tasks on each day of the week.
+<Image src={plannerViewSwitch} alt="Planner view switch" inferSize />
 
-<Image src={teamPlanner} alt="Team planner" inferSize />
+**Schedule** is your own day: action items and events laid out by hour, with the action item list on the left. This is the default view.
+
+**Calendar** shows the team's availability. Every member gets a row, the columns are days. A row carries the total time for that day, a busy bar from 08:00 to 20:00 and the list of events with their time and duration.
+
+<Image src={plannerTeamCalendar} alt="Team calendar" inferSize />
+
+The scale sits next to it: **Week**, **Month** and **Year**. Month shows only the hour totals per day, Year how busy each month is, which helps when you look for a free stretch well ahead. The **Day** scale (by hour) is available only when the filter has exactly one project selected.
+
+**Team** is an agenda per person in three columns: yesterday, today, tomorrow. Each column holds a card per member with their events and total time.
+
+<Image src={plannerTeamAgenda} alt="Team agenda" inferSize />
+
+The button left of the switch shows and hides the action item list. Its state is remembered separately for each view: open by default in Schedule, hidden in the team views, which want the room.
+
+The `Filter` button in the top right sets filters by project and by person. They narrow down what the Calendar and Team views show.
 
 ## Visibility settings for action items
 

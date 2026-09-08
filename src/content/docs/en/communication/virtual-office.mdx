@@ -4,6 +4,17 @@ description: Learn how to use Intabia Platform's virtual office for voice and vi
 ---
 
 import LocalVideo from "../../../../components/LocalVideo.astro";
+import { Image } from "astro:assets";
+import scheduledFloor from "../../../../assets/screenshots/huly/office-scheduled-floor.png";
+import createRecurring from "../../../../assets/screenshots/huly/meeting-create-recurring.png";
+import meetingCard from "../../../../assets/screenshots/huly/meeting-card-start.png";
+import linkSettings from "../../../../assets/screenshots/huly/meeting-link-settings.png";
+import meetingRepeat from "../../../../assets/screenshots/huly/meeting-repeat.png";
+import floorList from "../../../../assets/screenshots/huly/office-floor-list.png";
+import permanentList from "../../../../assets/screenshots/huly/permanent-meetings-list.png";
+import permanentCreate from "../../../../assets/screenshots/huly/permanent-meeting-create.png";
+import permanentPanel from "../../../../assets/screenshots/huly/permanent-meeting-panel.png";
+import guestPassword from "../../../../assets/screenshots/huly/meeting-guest-password.png";
 
 <LocalVideo id='I_ABiXcgMNw' posterQuality='max' />
 
@@ -47,6 +58,101 @@ During the meeting, a few options are available at the bottom of the screen:
 * **More options** - Copy guest link (in development), and Settings (for setting the room language, as well as recording and transcription defaults).
 * **Leave room** - Exit the meeting room.
 
+## Scheduled meetings
+
+You can arrange a meeting ahead of time from the planner. Click an empty slot in the calendar grid, type a title and tick `Create meeting` - a room picker appears below it. The service floor is not on that list: a meeting takes an ordinary meeting or voice room.
+
+<Image src={createRecurring} alt="Creating a recurring meeting" inferSize />
+
+To make the meeting recurring, click `Repeat` above the participant list. It sets the frequency (every N days, weeks or months), the weekdays, and how the series ends: never, on a date, or after N occurrences.
+
+<Image src={meetingRepeat} alt="Repeat settings" inferSize />
+
+Once created, the location field carries the meeting's permanent link, and the event card gains a `Meeting` row with the start button and a settings icon.
+
+### The Scheduled floor
+
+Scheduled meetings take no place in the office layout. They all live on a separate service floor named **Scheduled**, picked from the floor list next to the current floor's name.
+
+<Image src={floorList} alt="Floor list" inferSize />
+
+The floor is shown as a calendar rather than a grid of rooms: meetings happening right now are listed at the top, the schedule below, with its own scale switch (3 days, week, month, year).
+
+<Image src={scheduledFloor} alt="Scheduled meetings floor" inferSize />
+
+Everyone sees their own meetings there - the ones they take part in. The floor belongs to the workspace: it cannot be renamed or deleted, and no room can be added to it. It appears in the floor list but is never opened by default - you land on an ordinary office floor first.
+
+### Starting a meeting
+
+Until the meeting starts, its card in the event carries a `Start meeting` button. Any participant may press it, not only the organiser.
+
+<Image src={meetingCard} alt="Meeting card in a calendar event" inferSize />
+
+A meeting can be started 15 minutes before its time, and the window stays open for 4 hours after. Press earlier and the platform tells you when it opens. For a recurring meeting each occurrence is a meeting of its own, with its own recording, chat and transcript; past occurrences stay available.
+
+### Attendance
+
+A participant who opens the event sees `Will you attend?` and three answers: `Going`, `Maybe`, `Not going`. In the same place the organiser sees the tally across all participants - how many accepted, how many declined and how many have not answered yet.
+
+### Permanent link
+
+Every meeting has a permanent guest link, filled into the event's location field. It does not change from one occurrence to the next, so you can send it once and use it for the whole series.
+
+The link settings open from the icon next to the start button.
+
+<Image src={linkSettings} alt="Meeting link settings" inferSize />
+
+* **Who can start** - `Participants only` or `Anyone with the link`. The second turns the meeting into a permanent room: a guest opens it at any time, without waiting for an occurrence to begin.
+* **After the meeting is over** - what the link shows once the series has ended: `Last meeting` or `Nothing`.
+* **Link stays alive for** - how long the link works after the series ends: a day, a week or a month. While the series still has occurrences ahead, the link lives on regardless of this setting.
+* **Revoke link** - the old link stops working and a new one is issued in its place.
+
+A guest who opens the link before the meeting starts sees when the next occurrence is due and waits: once someone starts it, the same link lets them in.
+
+### Guest password
+
+The link lives a long time and travels through mail and messengers. To make holding it not enough, give the meeting a password - in the same link settings.
+
+<Image src={guestPassword} alt="Guest link password" inferSize />
+
+Only guests are asked for it: a workspace member enters by their own account. Until the password is entered the link shows nothing at all - no title, no time, no participants. After ten wrong attempts the link stops answering for fifteen minutes.
+
+`Copy link and password` puts both in the clipboard as one text, so you send them once. The password itself is never shown back: the settings say only `Set` or `Not set`. Forgotten it - set a new one.
+
+A password does not replace revoking. If the link leaked together with the password, issue a new one with `Revoke link`.
+
+## Permanent meetings
+
+A permanent meeting is a named place for recurring conversation with no time and no occurrences. It is what you want when people meet whenever they can, and the material of one topic should stay together: the document, the chat, the files and the recordings of every past call.
+
+Permanent meetings live on the same **Scheduled** service floor, above the calendar of scheduled ones.
+
+<Image src={permanentList} alt="Permanent meetings list" inferSize />
+
+### Creating one
+
+Press `+` next to the heading. The dialog asks for a name, the room type (video or audio), the members, and whether to start with recording and transcription.
+
+<Image src={permanentCreate} alt="Creating a permanent meeting" inferSize />
+
+A permanent meeting is visible to its members only, so the member list is also the list of everyone who can find it at all. The author always stays on it. People can be added or removed later, from the meeting's row.
+
+### Meeting
+
+`Join` opens the meeting at any moment - there is no appointed time to wait for. Whoever presses first starts it, everyone else lands in the same one. Every start is a meeting of its own, with its own recording and transcript; past ones are listed under the name.
+
+### Material
+
+The name opens the meeting's page: description, attachments and chat. All of it belongs to the meeting rather than to one call, so it outlives them all - which is the reason to keep a permanent meeting at all.
+
+<Image src={permanentPanel} alt="Permanent meeting page" inferSize />
+
+### The link
+
+A permanent meeting carries the same guest link as a scheduled one - the settings icon in its row. What differs is the set: `After the meeting is over` and `Link stays alive for` are not shown, because a permanent meeting has no series to outlive. The link works until it is revoked.
+
+Set `Who can start` to `Anyone with the link` and the meeting becomes a permanent room: a guest opens it themselves, without waiting for a member.
+
 ## Navigating the platform during a call
 
 You'll notice that meetings are automatically opened in the right sidebar. You can navigate the platform while in a call, and the call will remain open in the sidebar. From the sidebar, you can switch between the video, chat, and transcription tabs.
@@ -80,6 +186,8 @@ Large teams may find that the default layout may not have sufficient space for t
 If the Floors sidebar is not visible, either collapse the Main view by clicking the icon in the top left corner, or click on the two horizontal lines below your Workspace icon at the top of the left sidebar.
 
 To add a new Floor, click the `+` icon in the top right corner of the Floors sidebar. Enter a name for the new Floor and click `Add a floor`.
+
+Besides your own floors, the list always holds the **Scheduled** floor - see [Scheduled meetings](#scheduled-meetings). It cannot be renamed or deleted.
 
 ## Office preview
 At any time, from any view on the platform, you can glance at your virtual office space by selecting the `Office` icon in the far right sidebar. This opens a preview of your virtual office in the sidebar, where you can see which team members are in which areas. You can join a meeting room or visit someone's office from here as well.
